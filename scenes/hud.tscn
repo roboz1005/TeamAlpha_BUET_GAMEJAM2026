@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://cpnnanwf4guot"]
+
+[ext_resource type="Texture2D" uid="uid://txysa54jrj7j" path="res://assets/sprites/characters/items/heart.png" id="1_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://dpj0bd1ba6sm8" path="res://assets/sprites/characters/enemies/goblin/goblin_idle_anim_f0.png" id="2_5ysmq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntam3"]
+border_width_top = 2
+border_color = Color(0, 0, 0, 1)
+
+[node name="Hud" type="CanvasLayer" unique_id=1060820143]
+
+[node name="Panel" type="Panel" parent="." unique_id=976900308]
+offset_right = 768.0
+offset_bottom = 48.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ntam3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1784170687]
+position = Vector2(37, 24)
+scale = Vector2(3, 3)
+texture = ExtResource("1_oo0fn")
+
+[node name="LivesLabel" type="Label" parent="." unique_id=1667888464]
+offset_left = 64.0
+offset_top = 2.0
+offset_right = 111.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 32
+text = "X 3"
+horizontal_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1589302375]
+position = Vector2(651, 13)
+scale = Vector2(4, 4)
+texture = ExtResource("2_5ysmq")
+
+[node name="EnemiesLabel" type="Label" parent="." unique_id=963975857]
+offset_left = 677.0
+offset_top = 4.0
+offset_right = 724.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 32
+text = "X 3"
+horizontal_alignment = 1
+
+[node name="WaveLabel" type="Label" parent="." unique_id=420766641]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_right = 60.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "Wave: 1"
+horizontal_alignment = 1

@@ -169,6 +169,7 @@ animations = [{
 size = Vector2(41, 72)
 
 [node name="Player" type="CharacterBody2D" unique_id=1964261871]
+z_index = 5
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 17
@@ -183,3 +184,18 @@ animation = &"walk7"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=830116262]
 position = Vector2(-1, -40)
 shape = SubResource("RectangleShape2D_d571p")
+
+[node name="ShotTimer" type="Timer" parent="." unique_id=1726603866]
+wait_time = 0.5
+
+[node name="BoostTimer" type="Timer" parent="." unique_id=2001021390]
+wait_time = 6.0
+one_shot = true
+
+[node name="QuickFireTimer" type="Timer" parent="." unique_id=1029549258]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timer_timeout"]
+[connection signal="timeout" from="BoostTimer" to="." method="_on_boost_timer_timeout"]
+[connection signal="timeout" from="QuickFireTimer" to="." method="_on_quick_fire_timer_timeout"]
