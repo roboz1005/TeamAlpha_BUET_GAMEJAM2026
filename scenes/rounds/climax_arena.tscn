@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://0wp3ulf0rwp1"]
+
+[ext_resource type="Script" uid="uid://cros53sl2xbbn" path="res://scenes/rounds/climax_arena.gd" id="1_4hikd"]
+[ext_resource type="PackedScene" uid="uid://we21qyeblgan" path="res://scenes/rounds/round_arena.tscn" id="2_r57y2"]
+
+[node name="ClimaxArena" type="Node2D" unique_id=1226281302]
+script = ExtResource("1_4hikd")
+
+[node name="RoundArena" parent="." unique_id=1560975870 instance=ExtResource("2_r57y2")]

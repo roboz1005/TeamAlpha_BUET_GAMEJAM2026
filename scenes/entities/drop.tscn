@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dvdkdwnu74cwb"]
+
+[ext_resource type="Script" uid="uid://c3ifp35vywj2v" path="res://scenes/entities/drop.gd" id="1_rvtgt"]
+[ext_resource type="Texture2D" uid="uid://cgcguf4h2gb14" path="res://assets/sprites/health_box.png" id="2_pgfr0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g5f60"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pgfr0")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydqaa"]
+size = Vector2(35, 35)
+
+[node name="Drop" type="Area2D" unique_id=530366136]
+collision_layer = 32
+collision_mask = 10
+script = ExtResource("1_rvtgt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1739348398]
+sprite_frames = SubResource("SpriteFrames_g5f60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=320611503]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_ydqaa")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

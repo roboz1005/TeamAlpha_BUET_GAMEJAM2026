@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://we21qyeblgan"]
+
+[ext_resource type="Script" uid="uid://bd0ct0sxg2yib" path="res://scenes/rounds/round_arena.gd" id="1_g4706"]
+[ext_resource type="PackedScene" uid="uid://cfgfhl1km183t" path="res://scenes/entities/world.tscn" id="2_b3iub"]
+[ext_resource type="PackedScene" uid="uid://cqs33vvy4spor" path="res://scenes/entities/player.tscn" id="2_gnldl"]
+[ext_resource type="PackedScene" uid="uid://o1qaidli7d30" path="res://scenes/entities/hazard.tscn" id="2_ojed8"]
+[ext_resource type="PackedScene" uid="uid://bsaaweww1eimc" path="res://scenes/entities/bush.tscn" id="3_x3poo"]
+[ext_resource type="PackedScene" uid="uid://bs1n73fmtwrwx" path="res://scenes/camera_rig.tscn" id="5_b3iub"]
+[ext_resource type="PackedScene" uid="uid://bodo73pu75t1a" path="res://scenes/ui/hud.tscn" id="6_hoo6m"]
+
+[node name="RoundArena" type="Node2D" unique_id=1560975870]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_g4706")
+
+[node name="World" parent="." unique_id=1565154604 instance=ExtResource("2_b3iub")]
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1273510807]
+position = Vector2(65, 54)
+
+[node name="DoppelSpawns" type="Node2D" parent="." unique_id=1677392254]
+
+[node name="DoppelSpawns" type="Marker2D" parent="DoppelSpawns" unique_id=689656996]
+position = Vector2(434, 138)
+
+[node name="DoppelSpawns2" type="Marker2D" parent="DoppelSpawns" unique_id=1119641133]
+position = Vector2(388, 266)
+
+[node name="DoppelSpawns3" type="Marker2D" parent="DoppelSpawns" unique_id=837257606]
+position = Vector2(822, 144)
+
+[node name="DoppelSpawns4" type="Marker2D" parent="DoppelSpawns" unique_id=573643091]
+position = Vector2(510, 220)
+
+[node name="DoppelSpawns5" type="Marker2D" parent="DoppelSpawns" unique_id=1876017763]
+position = Vector2(288, 360)
+
+[node name="DoppelSpawns6" type="Marker2D" parent="DoppelSpawns" unique_id=685683518]
+position = Vector2(326, 104)
+
+[node name="DoppelSpawns7" type="Marker2D" parent="DoppelSpawns" unique_id=2075625128]
+position = Vector2(640, 138)
+
+[node name="DoppelSpawns8" type="Marker2D" parent="DoppelSpawns" unique_id=412270633]
+position = Vector2(130, 450)
+
+[node name="EnemySpawns" type="Node2D" parent="." unique_id=159035329]
+
+[node name="EnemySpawns" type="Marker2D" parent="EnemySpawns" unique_id=390723450]
+position = Vector2(171, 124)
+
+[node name="EnemySpawns2" type="Marker2D" parent="EnemySpawns" unique_id=1615328178]
+position = Vector2(122, 304)
+
+[node name="EnemySpawns3" type="Marker2D" parent="EnemySpawns" unique_id=1981243377]
+position = Vector2(320, 208)
+
+[node name="EnemySpawns4" type="Marker2D" parent="EnemySpawns" unique_id=1043400706]
+position = Vector2(236, 278)
+
+[node name="Hazards" type="Node2D" parent="." unique_id=2086874066]
+
+[node name="Hazard" parent="Hazards" unique_id=985074868 instance=ExtResource("2_ojed8")]
+position = Vector2(221, 73)
+scale = Vector2(0.5, 0.5)
+
+[node name="Bushes" type="Node2D" parent="." unique_id=388884260]
+
+[node name="Bush" parent="Bushes" unique_id=1585662071 instance=ExtResource("3_x3poo")]
+position = Vector2(175, 237)
+scale = Vector2(0.3, 0.3)
+
+[node name="Player" parent="." unique_id=1842097922 instance=ExtResource("2_gnldl")]
+position = Vector2(840, 822)
+
+[node name="CameraRig" parent="Player" unique_id=580616617 instance=ExtResource("5_b3iub")]
+position = Vector2(0, 2)
+scale = Vector2(0.25, 0.25)
+
+[node name="HUD" parent="." unique_id=1707821384 instance=ExtResource("6_hoo6m")]

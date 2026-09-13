@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bsaaweww1eimc"]
+
+[ext_resource type="Script" uid="uid://dd14uj58ft06m" path="res://scenes/entities/bush.gd" id="1_77s4q"]
+[ext_resource type="Texture2D" uid="uid://b8tgu3ge5kcmg" path="res://assets/sprites/coffee_box.png" id="2_0l3mr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pgfr0"]
+size = Vector2(140, 140)
+
+[node name="Bush" type="Area2D" unique_id=1585662071]
+scale = Vector2(0.5, 0.5)
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_77s4q")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=906632421]
+scale = Vector2(4, 4)
+texture = ExtResource("2_0l3mr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1171500020]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_pgfr0")

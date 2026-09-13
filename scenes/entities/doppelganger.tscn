@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ddbllusx3gqua"]
+
+[ext_resource type="Script" uid="uid://cyjp6mnpduh54" path="res://scenes/entities/doppelganger.gd" id="1_cin4a"]
+[ext_resource type="Texture2D" uid="uid://bf10s1kl1hw76" path="res://assets/sprites/player_S_1.png" id="2_837ec"]
+[ext_resource type="Texture2D" uid="uid://cnjuyvmpvgw8f" path="res://assets/sprites/gun_box.png" id="3_pphn3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jr1g6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_837ec")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hlb8m"]
+size = Vector2(11, 16)
+
+[node name="Doppelganger" type="CharacterBody2D" unique_id=1001013253]
+scale = Vector2(3, 3)
+collision_layer = 8
+script = ExtResource("1_cin4a")
+detection_radius = null
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=972375197]
+sprite_frames = SubResource("SpriteFrames_jr1g6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1781753194]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_hlb8m")
+
+[node name="AlertIcon" type="Sprite2D" parent="." unique_id=2007432430]
+visible = false
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_pphn3")

@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://diwby3pgxt8me"]
+
+[ext_resource type="Script" uid="uid://da6xgmap1id5j" path="res://scenes/entities/enemy.gd" id="1_d7j71"]
+[ext_resource type="Texture2D" uid="uid://da55jh68yh4ur" path="res://assets/sprites/goblin_idle_anim_f0.png" id="2_jr1g6"]
+[ext_resource type="Texture2D" uid="uid://rvtcnjs27tft" path="res://assets/sprites/goblin_idle_anim_f1.png" id="3_hlb8m"]
+[ext_resource type="Texture2D" uid="uid://84qcpqno3bbk" path="res://assets/sprites/goblin_idle_anim_f2.png" id="4_4fpkd"]
+[ext_resource type="Texture2D" uid="uid://h3umw7eumgmo" path="res://assets/sprites/goblin_idle_anim_f3.png" id="5_wqw0c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_42nxq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jr1g6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hlb8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4fpkd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wqw0c")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onntj"]
+size = Vector2(9, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntam3"]
+size = Vector2(9, 10)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1054291960]
+scale = Vector2(2.5, 2.5)
+collision_layer = 4
+script = ExtResource("1_d7j71")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=904814880]
+sprite_frames = SubResource("SpriteFrames_42nxq")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1080107972]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_onntj")
+
+[node name="HurtboxArea" type="Area2D" parent="." unique_id=16285615]
+collision_layer = 4
+collision_mask = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea" unique_id=551181432]
+position = Vector2(0.5, 3)
+shape = SubResource("RectangleShape2D_ntam3")
+
+[connection signal="body_entered" from="HurtboxArea" to="." method="_on_body_entered"]

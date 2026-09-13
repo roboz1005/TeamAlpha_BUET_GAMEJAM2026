@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cmum0w5rwaj3k"]
+
+[ext_resource type="Script" uid="uid://dyd8v5qj5c05i" path="res://scenes/entities/recording_component.gd" id="1_x2omn"]
+
+[node name="RecordingComponent" type="Node" unique_id=1110083853]
+script = ExtResource("1_x2omn")

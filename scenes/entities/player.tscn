@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cqs33vvy4spor"]
+
+[ext_resource type="Texture2D" uid="uid://c4pmefppruhc6" path="res://assets/sprites/player_S_0.png" id="1_1ie0h"]
+[ext_resource type="Script" uid="uid://cqif37iukmkmn" path="res://scenes/entities/player.gd" id="1_42nxq"]
+[ext_resource type="Texture2D" uid="uid://bf10s1kl1hw76" path="res://assets/sprites/player_S_1.png" id="2_42nxq"]
+[ext_resource type="Texture2D" uid="uid://bm2ely2mo7b6s" path="res://assets/sprites/player_S_2.png" id="3_5u6hq"]
+[ext_resource type="PackedScene" uid="uid://cmum0w5rwaj3k" path="res://scenes/entities/recording_component.tscn" id="5_5u6hq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1ie0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_42nxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5u6hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_42nxq")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1ie0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_42nxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5u6hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_42nxq")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d571p"]
+size = Vector2(11, 15)
+
+[node name="Player" type="CharacterBody2D" unique_id=1842097922]
+scale = Vector2(4, 4)
+collision_layer = 2
+script = ExtResource("1_42nxq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=860058119]
+sprite_frames = SubResource("SpriteFrames_ntam3")
+animation = &"run"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=405130782]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_d571p")
+
+[node name="Gun" type="Marker2D" parent="." unique_id=815637646]
+position = Vector2(0, 5)
+
+[node name="RecordingComponent" parent="." unique_id=1110083853 instance=ExtResource("5_5u6hq")]
