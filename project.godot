@@ -22,8 +22,8 @@ Events="*uid://ctmaly0hgd8x1"
 
 [display]
 
-window/size/viewport_width=768
-window/size/viewport_height=816
+window/size/viewport_width=1080
+window/size/viewport_height=608
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
