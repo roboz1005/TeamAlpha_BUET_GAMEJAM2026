@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="DoppelgangerMain"
-run/main_scene="uid://bmcpgn8wbtxe6"
+run/main_scene="uid://qd13mjo4sike"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameManager="*uid://dlrrd72lp05r1"
 Events="*uid://ctmaly0hgd8x1"
+VFX="*uid://cb43rxa0qiq7v"
 
 [display]
 

@@ -29,12 +29,20 @@ func take_hit(amount: int) -> void:
 	if health <= 0:
 		Events.enemy_killed.emit(self)
 		GameManager.add_xp(1)
+		VFX.spawn(VFX.DEATH_POOF, global_position)
 		_drop_loot()
 		queue_free()
 
 func _drop_loot() -> void:
 	if randf() < 0.5:
 		var drop := preload("res://scenes/entities/drop.tscn").instantiate()
-		drop.kind = "coin" if randf() < 0.7 else "health"
+		var roll := randf()
+		if roll < 0.6:
+			drop.kind = "coin"
+		elif roll < 0.85:
+			drop.kind = "health"
+		else:
+			var temp_kinds := ["temp_firerate", "temp_speed", "temp_defense"]
+			drop.kind = temp_kinds[randi() % temp_kinds.size()]
 		get_tree().current_scene.add_child(drop)
-		drop.global_position = global_position   # set AFTER add_child
+		drop.global_position = global_position

@@ -12,4 +12,4 @@ func _on_body_entered(body: Node) -> void:
 	if body is Player:
 		body.die(hazard_id)
 	elif body is Doppelganger:
-		body.take_hit(999)
+		body.take_hit(999, false)   # false = not player-caused

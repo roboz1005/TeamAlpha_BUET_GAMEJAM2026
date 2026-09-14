@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d246ixmf52a2c"]
+
+[ext_resource type="Script" uid="uid://bm3fj6phbow66" path="res://scenes/vfx/vfx_sabotage_burst.gd" id="1_wcke1"]
+
+[node name="VfxSabotageBurst" type="Node2D" unique_id=1087652524]
+script = ExtResource("1_wcke1")

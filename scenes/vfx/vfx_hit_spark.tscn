@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://pml257bre3i4"]
+
+[ext_resource type="Script" uid="uid://bo11ua12excvc" path="res://scenes/vfx/vfx_hit_spark.gd" id="1_uvynh"]
+
+[node name="VfxHitSpark" type="Node2D" unique_id=1190382825]
+script = ExtResource("1_uvynh")

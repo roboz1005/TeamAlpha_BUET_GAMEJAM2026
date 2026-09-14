@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://nw3j8kex3vpu"]
+
+[ext_resource type="PackedScene" uid="uid://cfgfhl1km183t" path="res://scenes/entities/world.tscn" id="1_hsmnc"]
+[ext_resource type="PackedScene" uid="uid://o1qaidli7d30" path="res://scenes/entities/hazard.tscn" id="2_g5h58"]
+[ext_resource type="PackedScene" uid="uid://bsaaweww1eimc" path="res://scenes/entities/bush.tscn" id="3_hrjdk"]
+
+[node name="Map01" type="Node2D" unique_id=417589742]
+
+[node name="Ground" parent="." unique_id=1565154604 instance=ExtResource("1_hsmnc")]
+
+[node name="Walls" type="Node2D" parent="." unique_id=1149310622]
+
+[node name="Hazards" type="Node2D" parent="." unique_id=1928010516]
+
+[node name="Hazard" parent="Hazards" unique_id=985074868 instance=ExtResource("2_g5h58")]
+position = Vector2(2226, 1494)
+scale = Vector2(0.5, 0.5)
+
+[node name="Hazard2" parent="Hazards" unique_id=1575011510 instance=ExtResource("2_g5h58")]
+position = Vector2(4466, 1478)
+scale = Vector2(0.5, 0.5)
+hazard_id = "hazard_pit_02"
+
+[node name="Hazard3" parent="Hazards" unique_id=1747924365 instance=ExtResource("2_g5h58")]
+position = Vector2(4222, 658)
+scale = Vector2(0.5, 0.5)
+hazard_id = "hazard_pit_03"
+
+[node name="Hazard4" parent="Hazards" unique_id=2041687382 instance=ExtResource("2_g5h58")]
+position = Vector2(1884, 3132)
+scale = Vector2(0.5, 0.5)
+hazard_id = "hazard_pit_04"
+
+[node name="Hazard5" parent="Hazards" unique_id=1232714074 instance=ExtResource("2_g5h58")]
+position = Vector2(2886, 4034)
+scale = Vector2(0.5, 0.5)
+hazard_id = "hazard_pit_05"
+
+[node name="Hazard6" parent="Hazards" unique_id=170024467 instance=ExtResource("2_g5h58")]
+position = Vector2(4466, 3324)
+scale = Vector2(0.5, 0.5)
+hazard_id = "hazard_pit_06"
+
+[node name="Hazard7" parent="Hazards" unique_id=790097478 instance=ExtResource("2_g5h58")]
+position = Vector2(1692, 626)
+scale = Vector2(0.5, 0.5)
+hazard_id = "hazard_pit_07"
+
+[node name="Hazard8" parent="Hazards" unique_id=1895191423 instance=ExtResource("2_g5h58")]
+position = Vector2(756, 2714)
+scale = Vector2(0.5, 0.5)
+hazard_id = "hazard_pit_08"
+
+[node name="EnemySpawns" type="Node2D" parent="." unique_id=194677161]
+
+[node name="EnemySpawn" type="Marker2D" parent="EnemySpawns" unique_id=982264471]
+position = Vector2(657, 359)
+
+[node name="EnemySpawn2" type="Marker2D" parent="EnemySpawns" unique_id=751106268]
+position = Vector2(426, 508)
+
+[node name="EnemySpawn3" type="Marker2D" parent="EnemySpawns" unique_id=218504900]
+position = Vector2(648, 545)
+
+[node name="EnemySpawn4" type="Marker2D" parent="EnemySpawns" unique_id=1943074780]
+position = Vector2(831, 394)
+
+[node name="Bushes" type="Node2D" parent="." unique_id=1934710719]
+
+[node name="Bush" parent="Bushes" unique_id=1585662071 instance=ExtResource("3_hrjdk")]
+position = Vector2(3626, 2150)
+scale = Vector2(0.3, 0.3)
+
+[node name="Bush2" parent="Bushes" unique_id=80513976 instance=ExtResource("3_hrjdk")]
+position = Vector2(1152, 3078)
+scale = Vector2(0.3, 0.3)
+
+[node name="Bush3" parent="Bushes" unique_id=495555336 instance=ExtResource("3_hrjdk")]
+position = Vector2(3968, 2852)
+scale = Vector2(0.3, 0.3)
+
+[node name="Bush4" parent="Bushes" unique_id=2063718254 instance=ExtResource("3_hrjdk")]
+position = Vector2(1252, 938)
+scale = Vector2(0.3, 0.3)
+
+[node name="PlayerSpawns" type="Node2D" parent="." unique_id=871479877]
+
+[node name="PlayerSpawn" type="Marker2D" parent="PlayerSpawns" unique_id=54176491]
+position = Vector2(5446, 590)
+
+[node name="PlayerSpawn2" type="Marker2D" parent="PlayerSpawns" unique_id=357529033]
+position = Vector2(738, 3474)
+
+[node name="PlayerSpawn3" type="Marker2D" parent="PlayerSpawns" unique_id=1815054165]
+position = Vector2(4698, 4940)
+
+[node name="PlayerSpawn4" type="Marker2D" parent="PlayerSpawns" unique_id=2019411181]
+position = Vector2(2464, 630)
+
+[node name="PlayerSpawn5" type="Marker2D" parent="PlayerSpawns" unique_id=484982829]
+position = Vector2(714, 1330)
+
+[node name="PlayerSpawn6" type="Marker2D" parent="PlayerSpawns" unique_id=1764044954]
+position = Vector2(5490, 3396)
+
+[node name="PlayerSpawn7" type="Marker2D" parent="PlayerSpawns" unique_id=1568631218]
+position = Vector2(1918, 4750)
+
+[node name="PlayerSpawn8" type="Marker2D" parent="PlayerSpawns" unique_id=1838522214]
+position = Vector2(3932, 342)

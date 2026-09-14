@@ -1,15 +1,12 @@
 extends CanvasLayer
 class_name HUD
 
-@onready var health_label: Label = $Margin/VBox/HealthLabel
-@onready var round_label: Label = $Margin/VBox/RoundLabel
-@onready var doppel_label: Label = $Margin/VBox/DoppelLabel
-@onready var currency_label: Label = $Margin/VBox/CurrencyLabel
+@onready var health_label: Label = $HealthLabel
+@onready var round_label: Label = $RoundLabel
+@onready var doppel_label: Label = $DoppelLabel
+@onready var currency_label: Label = $CurrencyLabel
+@onready var clone_item_label: Label = $CloneItemLabel
 
-# NOTE: all three connections below MUST be code, not the editor — see
-# Section 4. GameManager and Events are autoloads with no home in this
-# scene's node tree, and Player is found dynamically by group rather than a
-# fixed slot, so none of them can be picked through the Node dock here.
 func _ready() -> void:
 	GameManager.round_started.connect(_on_round_started)
 	Events.skill_unlocked.connect(_on_skill_unlocked)
@@ -32,3 +29,6 @@ func _on_skill_unlocked(skill_name: String) -> void:
 
 func _process(_delta: float) -> void:
 	currency_label.text = "Coins: %d" % GameManager.player_currency
+	var player := get_tree().get_first_node_in_group("player")
+	if player:
+		clone_item_label.text = "Clone Control: Ready" if player.held_clone_control_item else "Clone Control: —"

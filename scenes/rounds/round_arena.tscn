@@ -1,10 +1,7 @@
 [gd_scene format=3 uid="uid://we21qyeblgan"]
 
 [ext_resource type="Script" uid="uid://bd0ct0sxg2yib" path="res://scenes/rounds/round_arena.gd" id="1_g4706"]
-[ext_resource type="PackedScene" uid="uid://cfgfhl1km183t" path="res://scenes/entities/world.tscn" id="2_b3iub"]
 [ext_resource type="PackedScene" uid="uid://cqs33vvy4spor" path="res://scenes/entities/player.tscn" id="2_gnldl"]
-[ext_resource type="PackedScene" uid="uid://o1qaidli7d30" path="res://scenes/entities/hazard.tscn" id="2_ojed8"]
-[ext_resource type="PackedScene" uid="uid://bsaaweww1eimc" path="res://scenes/entities/bush.tscn" id="3_x3poo"]
 [ext_resource type="PackedScene" uid="uid://bs1n73fmtwrwx" path="res://scenes/camera_rig.tscn" id="5_b3iub"]
 [ext_resource type="PackedScene" uid="uid://bodo73pu75t1a" path="res://scenes/ui/hud.tscn" id="6_hoo6m"]
 
@@ -12,109 +9,7 @@
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_g4706")
 
-[node name="World" parent="." unique_id=1565154604 instance=ExtResource("2_b3iub")]
-
-[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=1273510807]
-position = Vector2(65, 54)
-
-[node name="DoppelSpawns" type="Node2D" parent="." unique_id=1677392254]
-
-[node name="DoppelSpawns" type="Marker2D" parent="DoppelSpawns" unique_id=689656996]
-position = Vector2(5446, 590)
-
-[node name="DoppelSpawns2" type="Marker2D" parent="DoppelSpawns" unique_id=1119641133]
-position = Vector2(738, 3474)
-
-[node name="DoppelSpawns3" type="Marker2D" parent="DoppelSpawns" unique_id=837257606]
-position = Vector2(4698, 4940)
-
-[node name="DoppelSpawns4" type="Marker2D" parent="DoppelSpawns" unique_id=573643091]
-position = Vector2(2464, 630)
-
-[node name="DoppelSpawns5" type="Marker2D" parent="DoppelSpawns" unique_id=1876017763]
-position = Vector2(714, 1330)
-
-[node name="DoppelSpawns6" type="Marker2D" parent="DoppelSpawns" unique_id=685683518]
-position = Vector2(5490, 3396)
-
-[node name="DoppelSpawns7" type="Marker2D" parent="DoppelSpawns" unique_id=2075625128]
-position = Vector2(1918, 4750)
-
-[node name="DoppelSpawns8" type="Marker2D" parent="DoppelSpawns" unique_id=412270633]
-position = Vector2(3932, 342)
-
-[node name="EnemySpawns" type="Node2D" parent="." unique_id=159035329]
-
-[node name="EnemySpawns" type="Marker2D" parent="EnemySpawns" unique_id=390723450]
-position = Vector2(1366, 2054)
-
-[node name="EnemySpawns2" type="Marker2D" parent="EnemySpawns" unique_id=1615328178]
-position = Vector2(4208, 2192)
-
-[node name="EnemySpawns3" type="Marker2D" parent="EnemySpawns" unique_id=1981243377]
-position = Vector2(3110, 1126)
-
-[node name="EnemySpawns4" type="Marker2D" parent="EnemySpawns" unique_id=1043400706]
-position = Vector2(2968, 3310)
-
-[node name="Hazards" type="Node2D" parent="." unique_id=2086874066]
-
-[node name="Hazard" parent="Hazards" unique_id=985074868 instance=ExtResource("2_ojed8")]
-position = Vector2(2226, 1494)
-scale = Vector2(0.5, 0.5)
-
-[node name="Hazard2" parent="Hazards" unique_id=1755535289 instance=ExtResource("2_ojed8")]
-position = Vector2(4466, 1478)
-scale = Vector2(0.5, 0.5)
-hazard_id = "hazard_pit_02"
-
-[node name="Hazard3" parent="Hazards" unique_id=2118695533 instance=ExtResource("2_ojed8")]
-position = Vector2(4222, 658)
-scale = Vector2(0.5, 0.5)
-hazard_id = "hazard_pit_03"
-
-[node name="Hazard4" parent="Hazards" unique_id=2119538556 instance=ExtResource("2_ojed8")]
-position = Vector2(1884, 3132)
-scale = Vector2(0.5, 0.5)
-hazard_id = "hazard_pit_04"
-
-[node name="Hazard5" parent="Hazards" unique_id=82029075 instance=ExtResource("2_ojed8")]
-position = Vector2(2886, 4034)
-scale = Vector2(0.5, 0.5)
-hazard_id = "hazard_pit_05"
-
-[node name="Hazard6" parent="Hazards" unique_id=934269378 instance=ExtResource("2_ojed8")]
-position = Vector2(4466, 3324)
-scale = Vector2(0.5, 0.5)
-hazard_id = "hazard_pit_06"
-
-[node name="Hazard7" parent="Hazards" unique_id=360264545 instance=ExtResource("2_ojed8")]
-position = Vector2(1692, 626)
-scale = Vector2(0.5, 0.5)
-hazard_id = "hazard_pit_07"
-
-[node name="Hazard8" parent="Hazards" unique_id=1993742050 instance=ExtResource("2_ojed8")]
-position = Vector2(756, 2714)
-scale = Vector2(0.5, 0.5)
-hazard_id = "hazard_pit_08"
-
-[node name="Bushes" type="Node2D" parent="." unique_id=388884260]
-
-[node name="Bush" parent="Bushes" unique_id=1585662071 instance=ExtResource("3_x3poo")]
-position = Vector2(3626, 2150)
-scale = Vector2(0.3, 0.3)
-
-[node name="Bush2" parent="Bushes" unique_id=751395325 instance=ExtResource("3_x3poo")]
-position = Vector2(1152, 3078)
-scale = Vector2(0.3, 0.3)
-
-[node name="Bush3" parent="Bushes" unique_id=1861836173 instance=ExtResource("3_x3poo")]
-position = Vector2(3968, 2852)
-scale = Vector2(0.3, 0.3)
-
-[node name="Bush4" parent="Bushes" unique_id=970817811 instance=ExtResource("3_x3poo")]
-position = Vector2(1252, 938)
-scale = Vector2(0.3, 0.3)
+[node name="MapContainer" type="Node2D" parent="." unique_id=814222329]
 
 [node name="Player" parent="." unique_id=1842097922 instance=ExtResource("2_gnldl")]
 position = Vector2(2976, 2612)

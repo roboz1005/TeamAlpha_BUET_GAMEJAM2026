@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c2n3o5agvf5tb"]
+
+[ext_resource type="Script" uid="uid://beex4hurwqc8v" path="res://scenes/vfx/vfx_possession_swirl.gd" id="1_4e0gn"]
+
+[node name="VfxPossessionSwirl" type="Node2D" unique_id=1778433020]
+script = ExtResource("1_4e0gn")

@@ -5,12 +5,13 @@ signal round_ended(round_number: int, player_died: bool)
 signal game_won
 signal game_over
 
-const TOTAL_ROUNDS_BEFORE_CLIMAX := 9   # rounds 1..9 normal, round 10 = climax
+const TOTAL_ROUNDS_BEFORE_CLIMAX := 9
 
 var current_round: int = 1
 var recordings: Array[RoundRecording] = []
 var player_skills: SkillSet = SkillSet.new()
 var player_currency: int = 0
+var selected_map_path: String = "res://scenes/maps/map_01.tscn"
 
 var xp: int = 0
 var xp_to_next_level: int = 10
@@ -25,27 +26,33 @@ func start_new_run() -> void:
 	player_currency = 0
 	xp = 0
 	xp_to_next_level = 10
-	get_tree().call_deferred("change_scene_to_file","res://scenes/rounds/round_arena.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/rounds/round_arena.tscn")
 
 func doppelganger_count_for_round(round_number: int) -> int:
 	return max(0, round_number - 1)
 
 func finish_round(recording: RoundRecording, player_died: bool) -> void:
+	round_ended.emit(current_round, player_died)
+
+	if player_died:
+		# Retry the same round: no new doppelganger, no progression.
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/rounds/round_arena.tscn")
+		return
+
 	recording.round_number = current_round
 	recording.skills_snapshot = player_skills.duplicate_skills()
 	recordings.append(recording)
-	round_ended.emit(current_round, player_died)
 
 	if current_round >= TOTAL_ROUNDS_BEFORE_CLIMAX:
-		get_tree().call_deferred("change_scene_to_file","res://scenes/rounds/climax_arena.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/rounds/climax_arena.tscn")
 	else:
 		current_round += 1
-		get_tree().call_deferred("change_scene_to_file","res://scenes/rounds/round_arena.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/rounds/round_arena.tscn")
 
 func add_xp(amount: int) -> void:
 	xp += amount
-	while xp >= xp_to_next_level:            # while, not if — a big XP grant
-		xp -= xp_to_next_level               # can cross more than one threshold
+	while xp >= xp_to_next_level:
+		xp -= xp_to_next_level
 		xp_to_next_level = int(xp_to_next_level * 1.4)
 		_unlock_random_skill_tier()
 

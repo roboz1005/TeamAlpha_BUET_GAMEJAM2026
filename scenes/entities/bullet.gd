@@ -17,9 +17,11 @@ func _on_body_entered(body: Node) -> void:
 	var source: String = get_meta("source", "")
 	if source == "player" and (body.is_in_group("enemies") or body.is_in_group("doppelgangers")):
 		body.take_hit(damage)
+		VFX.spawn(VFX.HIT_SPARK, global_position)
 		queue_free()
 	elif source == "doppelganger" and body.is_in_group("player"):
 		body.take_hit(damage)
+		VFX.spawn(VFX.HIT_SPARK, global_position)
 		queue_free()
 	elif body.is_in_group("walls"):
 		queue_free()

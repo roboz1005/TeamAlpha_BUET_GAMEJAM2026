@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bxmwhlrhwojll"]
+
+[ext_resource type="Script" uid="uid://dtdda3ikwqus3" path="res://scenes/vfx/vfx_elite_aura.gd" id="1_aro0c"]
+
+[node name="VfxEliteAura" type="Node2D" unique_id=1770498121]
+script = ExtResource("1_aro0c")

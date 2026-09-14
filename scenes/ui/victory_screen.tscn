@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://eth0l6p5yqf8"]
+
+[ext_resource type="Script" uid="uid://b3cb0xttrswy7" path="res://scenes/ui/victory_screen.gd" id="1_dtet5"]
+
+[node name="VictoryScreen" type="Control" unique_id=1273473123]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dtet5")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=1761740666]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=40465398]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="VBox" unique_id=241469776]
+layout_mode = 2
+text = "YOU SURVIVED"
+
+[node name="StatsLabel" type="Label" parent="VBox" unique_id=1683758591]
+layout_mode = 2
+
+[node name="ReplayButton" type="Button" parent="VBox" unique_id=2102995815]
+layout_mode = 2
+text = "Play Again"
+
+[connection signal="pressed" from="VBox/ReplayButton" to="." method="_on_replay_button_pressed"]

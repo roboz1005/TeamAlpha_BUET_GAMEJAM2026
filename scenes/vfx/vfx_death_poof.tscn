@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://efbgr60sfrd1"]
+
+[ext_resource type="Script" uid="uid://1aooe7j76n3b" path="res://scenes/vfx/vfx_death_poof.gd" id="1_m2brj"]
+
+[node name="VfxDeathPoof" type="Node2D" unique_id=173316143]
+script = ExtResource("1_m2brj")

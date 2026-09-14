@@ -9,13 +9,14 @@ var state: State = State.REPLAY
 var recording: RoundRecording
 var skills: SkillSet
 var is_special: bool = false
+var is_climax_giant: bool = false
 var health: int = 2
 var controller: Player = null
 
 var _frame_index: int = 0
 var _fire_cooldown: float = 0.0
 var _target_drop: Node = null
-var _spawn_grace: float = 1.5   # ignores player-detection for a moment after spawning
+var _spawn_grace: float = 1.5
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var alert_icon: Sprite2D = $AlertIcon
@@ -31,10 +32,20 @@ func setup(rec: RoundRecording, upgraded_special: bool = false) -> void:
 		skills.move_speed_level = 2
 		skills.max_health_level = 3
 		health = 5
-		sprite.modulate = Color(1.0, 0.85, 0.2)   # gold tint for the elite
+		sprite.modulate = Color(1.0, 0.85, 0.2)
+		if not has_node("EliteAura"):
+			var aura := preload("res://scenes/vfx/vfx_elite_aura.tscn").instantiate()
+			aura.name = "EliteAura"
+			add_child(aura)
 	else:
 		health = 2 + skills.max_health_level
-		sprite.modulate = Color(0.8, 0.2, 0.3)    # standard doppelganger tint
+		sprite.modulate = Color(0.8, 0.2, 0.3)
+
+func make_climax_giant() -> void:
+	is_climax_giant = true
+	health = int(health * 2.0)
+	scale = Vector2(1.6, 1.6)
+	detection_radius *= 1.2
 
 func _physics_process(delta: float) -> void:
 	_fire_cooldown = max(0.0, _fire_cooldown - delta)
@@ -56,16 +67,29 @@ func _physics_process(delta: float) -> void:
 		State.ALERT_SEARCH:
 			_do_search(delta)
 		State.POSSESSED:
-			pass   # driven externally via possessed_move()
+			pass
 
 func _do_replay() -> void:
 	if _frame_index >= recording.positions.size():
 		state = State.ALERT_SEARCH
 		return
 	var target_pos: Vector2 = recording.positions[_frame_index]
+	var move_dir := target_pos - global_position
 	global_position = global_position.move_toward(target_pos, 4.0)
+	_avoid_known_hazard_during_replay()
+	_update_facing_sprite(move_dir)
 	_frame_index += 1
 	_replay_actions_for_frame(_frame_index)
+
+func _avoid_known_hazard_during_replay() -> void:
+	# New: the ghost now nudges away from the exact hazard that killed it
+	# even while replaying, instead of walking straight back into it.
+	if recording.death_hazard_id == "":
+		return
+	var hazard := get_tree().get_first_node_in_group(recording.death_hazard_id)
+	if hazard and global_position.distance_to(hazard.global_position) < 60:
+		var away = (global_position - hazard.global_position).normalized()
+		global_position += away * 6.0
 
 func _replay_actions_for_frame(frame: int) -> void:
 	for action in recording.actions:
@@ -98,6 +122,7 @@ func _do_combat() -> void:
 	var dir := _steer_away_from_known_hazard(to_player.normalized())
 	velocity = dir * (100 + skills.move_speed_level * 15)
 	move_and_slide()
+	_update_facing_sprite(dir)
 	if to_player.length() < 220 and _fire_cooldown <= 0.0:
 		_fire_at(to_player.angle())
 
@@ -117,12 +142,9 @@ func _fire_at(angle: float) -> void:
 	bullet.damage = 1 + skills.damage_level
 	bullet.set_meta("source", "doppelganger")
 	get_tree().current_scene.add_child(bullet)
-	bullet.global_position = global_position   # set AFTER add_child
+	bullet.global_position = global_position
 
 func _do_dodge() -> void:
-	# Unreachable for now — nothing transitions the state machine into DODGE
-	# yet. Left as a stub for a future "dodge incoming bullets" behavior;
-	# harmless to leave as-is.
 	state = State.COMBAT
 
 func _check_nearby_drops() -> void:
@@ -136,7 +158,9 @@ func _do_collect() -> void:
 	if not is_instance_valid(_target_drop):
 		state = State.REPLAY
 		return
+	var move_dir = _target_drop.global_position - global_position
 	global_position = global_position.move_toward(_target_drop.global_position, 3.0)
+	_update_facing_sprite(move_dir)
 	if global_position.distance_to(_target_drop.global_position) < 10:
 		_target_drop.collect(self)
 		_target_drop = null
@@ -150,6 +174,17 @@ func _do_search(_delta: float) -> void:
 			return
 	velocity = velocity.rotated(randf_range(-0.3, 0.3)).normalized() * 70
 	move_and_slide()
+	_update_facing_sprite(velocity)
+
+func _update_facing_sprite(move_dir: Vector2) -> void:
+	# 8-directional facing based on movement, not mouse (a doppelganger has
+	# no cursor) — same "walk0".."walk7" animation naming as the player.
+	if move_dir.length() < 0.01:
+		sprite.stop()
+		return
+	var octant := wrapi(int(snappedf(move_dir.angle(), PI / 4) / (PI / 4)), 0, 8)
+	sprite.animation = "walk%d" % octant
+	sprite.play()
 
 func take_hit(amount: int, from_player: bool = true) -> void:
 	health -= amount
@@ -165,12 +200,24 @@ func _die(killed_by_player: bool) -> void:
 	if killed_by_player:
 		GameManager.player_currency += 5
 		GameManager.add_xp(3)
-		Events.doppelganger_killed.emit(self)
-	#if is_special:
-		#var pickup = preload("res://scenes/entities/clone_control_pickup.tscn").instantiate()
-		#get_tree().current_scene.add_child(pickup)
-		#pickup.global_position = global_position   # set AFTER add_child
+	VFX.spawn(VFX.DEATH_POOF, global_position)
+	Events.doppelganger_killed.emit(self)   # always emit — round-clear tracking needs every death, not just player kills
+	if is_special:
+		var pickup := preload("res://scenes/entities/clone_control_pickup.tscn").instantiate()
+		get_tree().current_scene.add_child(pickup)
+		pickup.global_position = global_position
+	if is_climax_giant:
+		_spawn_split_doppelganger()
 	queue_free()
+
+func _spawn_split_doppelganger() -> void:
+	var doppel_scene := preload("res://scenes/entities/doppelganger.tscn")
+	var d := doppel_scene.instantiate()
+	d.call_deferred("add_to_group", "doppelgangers")
+	get_tree().current_scene.add_child(d)
+	d.global_position = global_position
+	d.setup(recording)   # same recording => same skills snapshot
+	d.state = State.COMBAT
 
 func get_possessed(player: Player) -> void:
 	state = State.POSSESSED
@@ -183,8 +230,10 @@ func release_possession() -> void:
 func possessed_move(dir: Vector2) -> void:
 	velocity = dir * (140 + skills.move_speed_level * 15)
 	move_and_slide()
+	_update_facing_sprite(dir)
 
 func sabotage_from(_saboteur: Doppelganger) -> void:
+	VFX.spawn(VFX.SABOTAGE_BURST, global_position)
 	_die(true)
 	_broadcast_alert()
 

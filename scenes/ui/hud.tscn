@@ -5,25 +5,56 @@
 [node name="HUD" type="CanvasLayer" unique_id=1707821384]
 script = ExtResource("1_8c73q")
 
-[node name="Margin" type="MarginContainer" parent="." unique_id=706255919]
-offset_right = 172.0
-offset_bottom = 110.0
-
-[node name="VBox" type="VBoxContainer" parent="Margin" unique_id=1903801358]
-layout_mode = 2
-
-[node name="HealthLabel" type="Label" parent="Margin/VBox" unique_id=1800213055]
-layout_mode = 2
+[node name="HealthLabel" type="Label" parent="." unique_id=1800213055]
+offset_left = 20.0
+offset_top = 16.0
+offset_right = 192.0
+offset_bottom = 39.0
 text = "HP: 3/3"
 
-[node name="RoundLabel" type="Label" parent="Margin/VBox" unique_id=1714740099]
-layout_mode = 2
+[node name="RoundLabel" type="Label" parent="." unique_id=1714740099]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -440.0
+offset_top = 16.0
+offset_right = -268.0
+offset_bottom = 39.0
+grow_horizontal = 2
 text = "Round 1"
 
-[node name="DoppelLabel" type="Label" parent="Margin/VBox" unique_id=211548995]
-layout_mode = 2
+[node name="DoppelLabel" type="Label" parent="." unique_id=211548995]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -820.0
+offset_top = 16.0
+offset_right = -648.0
+offset_bottom = 39.0
+grow_horizontal = 0
 text = "Doppelgangers: 0"
 
-[node name="CurrencyLabel" type="Label" parent="Margin/VBox" unique_id=1324900673]
-layout_mode = 2
+[node name="CurrencyLabel" type="Label" parent="." unique_id=1324900673]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -564.0
+offset_right = 192.0
+offset_bottom = -541.0
+grow_vertical = 0
 text = "Coins: 0"
+
+[node name="CloneItemLabel" type="Label" parent="." unique_id=1907866163]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -820.0
+offset_top = -564.0
+offset_right = -648.0
+offset_bottom = -541.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Clone: "

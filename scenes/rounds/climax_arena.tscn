@@ -1,9 +1,21 @@
 [gd_scene format=3 uid="uid://0wp3ulf0rwp1"]
 
 [ext_resource type="Script" uid="uid://cros53sl2xbbn" path="res://scenes/rounds/climax_arena.gd" id="1_4hikd"]
-[ext_resource type="PackedScene" uid="uid://we21qyeblgan" path="res://scenes/rounds/round_arena.tscn" id="2_r57y2"]
+[ext_resource type="PackedScene" uid="uid://cqs33vvy4spor" path="res://scenes/entities/player.tscn" id="2_apdfj"]
+[ext_resource type="PackedScene" uid="uid://bs1n73fmtwrwx" path="res://scenes/camera_rig.tscn" id="3_w75dt"]
+[ext_resource type="PackedScene" uid="uid://bodo73pu75t1a" path="res://scenes/ui/hud.tscn" id="4_fv3w0"]
 
 [node name="ClimaxArena" type="Node2D" unique_id=1226281302]
 script = ExtResource("1_4hikd")
 
-[node name="RoundArena" parent="." unique_id=1560975870 instance=ExtResource("2_r57y2")]
+[node name="MapContainer" type="Node2D" parent="." unique_id=1582487643]
+
+[node name="Player" parent="." unique_id=1842097922 instance=ExtResource("2_apdfj")]
+position = Vector2(2976, 2612)
+
+[node name="CameraRig" parent="Player" unique_id=580616617 instance=ExtResource("3_w75dt")]
+position = Vector2(0, 2)
+scale = Vector2(0.25, 0.25)
+position_smoothing_enabled = true
+
+[node name="HUD" parent="." unique_id=1707821384 instance=ExtResource("4_fv3w0")]
