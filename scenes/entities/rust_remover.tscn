@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://hbhbeoiwka5d"]
+
+[ext_resource type="Texture2D" uid="uid://cykl8un56lwnf" path="res://assets/brackeys_platformer_assets/sprites/fruit.png" id="1_3ahhh"]
+[ext_resource type="Script" uid="uid://bsew24t8sgvy4" path="res://scripts/entities/rust_remover.gd" id="1_capdu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ahhh"]
+atlas = ExtResource("1_3ahhh")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ahhh")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntam3"]
+radius = 9.0
+
+[node name="RustRemover" type="Area2D" unique_id=1268934101]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_capdu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=13731480]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ntam3")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=305999972]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_ntam3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

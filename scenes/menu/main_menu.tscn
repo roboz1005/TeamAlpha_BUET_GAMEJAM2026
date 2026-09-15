@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://cmdffb68omd0s"]
+
+[ext_resource type="Texture2D" uid="uid://cykl8un56lwnf" path="res://assets/brackeys_platformer_assets/sprites/fruit.png" id="1_3rkf3"]
+[ext_resource type="Script" uid="uid://csbap48j85p5s" path="res://scripts/menu/main_menu.gd" id="1_247la"]
+[ext_resource type="Texture2D" uid="uid://cyxqxdklvyltr" path="res://assets/brackeys_platformer_assets/sprites/icons.png" id="2_247la"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d571p"]
+atlas = ExtResource("2_247la")
+region = Rect2(128, 0, 16, 16)
+
+[node name="MainMenu" type="Control" unique_id=1250640735]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_247la")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1217501628]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3rkf3")
+stretch_mode = 6
+
+[node name="TitleLabel" type="Label" parent="." unique_id=459535881]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -196.0
+offset_right = 185.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Sojourner"
+uppercase = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1758153655]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.5
+offset_right = 3.0
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+
+[node name="EarthButton" type="Button" parent="VBoxContainer" unique_id=1591832980]
+layout_mode = 2
+text = "Earth"
+
+[node name="LockIcon" type="TextureRect" parent="VBoxContainer/EarthButton" unique_id=1905016543]
+visible = false
+modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 1
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_d571p")
+stretch_mode = 4
+
+[node name="MoonButton" type="Button" parent="VBoxContainer" unique_id=1758915207]
+layout_mode = 2
+text = "Moon"
+
+[node name="LockIcon" type="TextureRect" parent="VBoxContainer/MoonButton" unique_id=1283562878]
+modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_d571p")
+stretch_mode = 4
+
+[node name="MarsButton" type="Button" parent="VBoxContainer" unique_id=2004450626]
+layout_mode = 2
+text = "Mars"
+
+[node name="LockIcon" type="TextureRect" parent="VBoxContainer/MarsButton" unique_id=804586183]
+modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 1
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_d571p")
+stretch_mode = 4
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=960375854]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/EarthButton" to="." method="_on_earth_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MoonButton" to="." method="_on_moon_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarsButton" to="." method="_on_mars_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

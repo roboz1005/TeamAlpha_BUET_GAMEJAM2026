@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://bkndfcropnarn"]
+
+[ext_resource type="Script" uid="uid://bdi2meqsriyjh" path="res://scripts/entities/bullet.gd" id="1_byxw7"]
+[ext_resource type="Texture2D" uid="uid://cfu1cgnq684a2" path="res://assets/brackeys_platformer_assets/sprites/bullet.png" id="1_ma0cl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n3qe8"]
+
+[node name="Bullet" type="Area2D" unique_id=670007229]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_byxw7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1803539977]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ma0cl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=241423158]
+shape = SubResource("CircleShape2D_n3qe8")
+
+[node name="LifetimeTimer" type="Timer" parent="." unique_id=983558318]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

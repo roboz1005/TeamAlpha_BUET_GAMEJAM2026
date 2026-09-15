@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bo5iaemgtknmu"]
+
+[ext_resource type="Script" uid="uid://ci575abbvdna8" path="res://scripts/ui/pause_menu.gd" id="1_6tw0m"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=480114824]
+process_mode = 2
+visible = false
+script = ExtResource("1_6tw0m")
+
+[node name="Control" type="Control" parent="." unique_id=1949696239]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1604908393]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -46.5
+offset_right = 55.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PausedLabel" type="Label" parent="Control/VBoxContainer" unique_id=1521585083]
+layout_mode = 2
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="Control/VBoxContainer" unique_id=1606572594]
+layout_mode = 2
+text = "Resume"
+
+[node name="QuitButton" type="Button" parent="Control/VBoxContainer" unique_id=1670150248]
+layout_mode = 2
+text = "Quit to Menu"
+
+[connection signal="pressed" from="Control/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

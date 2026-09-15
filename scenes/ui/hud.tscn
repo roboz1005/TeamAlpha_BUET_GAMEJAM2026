@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://0lv7pidiah1b"]
+
+[ext_resource type="Script" uid="uid://cfrnoh1o12kbo" path="res://scripts/ui/hud.gd" id="1_hqnrr"]
+[ext_resource type="PackedScene" uid="uid://bo5iaemgtknmu" path="res://scenes/ui/pause_menu.tscn" id="2_bo48s"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1555539090]
+script = ExtResource("1_hqnrr")
+
+[node name="Control" type="Control" parent="." unique_id=1310038496]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MaterialsLabel" type="Label" parent="Control" unique_id=78150730]
+layout_mode = 1
+offset_top = 32.0
+offset_right = 65.0
+offset_bottom = 55.0
+text = "Material"
+
+[node name="TimerLabel" type="Label" parent="Control" unique_id=669954292]
+layout_mode = 1
+offset_right = 45.0
+offset_bottom = 23.0
+text = "Timer"
+
+[node name="HintLabel" type="Label" parent="Control" unique_id=1696305632]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Hint"
+
+[node name="HintTimer" type="Timer" parent="Control" unique_id=659298840]
+one_shot = true
+
+[node name="PauseButton" type="Button" parent="Control" unique_id=306383873]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "II"
+
+[node name="PauseMenu" parent="." unique_id=480114824 instance=ExtResource("2_bo48s")]
+layer = 10
