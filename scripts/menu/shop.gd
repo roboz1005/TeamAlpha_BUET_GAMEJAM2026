@@ -2,7 +2,9 @@ extends Control
 class_name Shop
 
 @onready var coins_label: Label = $CoinsLabel
-@onready var bullet_list: VBoxContainer = $BulletList
+@onready var bullet_list: VBoxContainer = $ScrollContainer/BulletList
+@onready var potion_label: Label = $VBoxContainer/PotionLabel
+@onready var potion_button: Button = $VBoxContainer/PotionButton
 @onready var back_button: Button = $BackButton
 
 func _ready() -> void:
@@ -14,6 +16,7 @@ func _refresh() -> void:
 	coins_label.text = "Coins: %d" % GameManager.coins
 	for bullet_id in GameManager.BULLET_CATALOG.keys():
 		_add_bullet_row(bullet_id)
+	_update_potion_row()
 
 func _add_bullet_row(bullet_id: String) -> void:
 	var info: Dictionary = GameManager.BULLET_CATALOG[bullet_id]
@@ -49,6 +52,16 @@ func _add_bullet_row(bullet_id: String) -> void:
 	row.add_child(action_button)
 
 	bullet_list.add_child(row)
+
+func _update_potion_row() -> void:
+	potion_label.text = "Max HP Potion (+1 max HP) — Owned: %d" % GameManager.max_health_bonus
+	potion_button.text = "Buy (%d coins)" % GameManager.POTION_COST
+	potion_button.disabled = GameManager.coins < GameManager.POTION_COST
+
+# "signal" — PotionButton(Button).pressed -> _on_potion_button_pressed()
+func _on_potion_button_pressed() -> void:
+	GameManager.buy_potion()
+	_refresh()
 
 func _on_bullet_button_pressed(bullet_id: String) -> void:
 	if GameManager.unlocked_bullets.has(bullet_id):

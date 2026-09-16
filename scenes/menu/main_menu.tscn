@@ -119,13 +119,27 @@ text = "Easy"
 layout_mode = 2
 text = "Store"
 
+[node name="ResetButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=1324368877]
+layout_mode = 2
+text = "Reset"
+
 [node name="QuitButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=960375854]
 layout_mode = 2
 text = "Quit"
+
+[node name="ResetConfirmDialog" type="ConfirmationDialog" parent="." unique_id=471241033]
+oversampling_override = 1.0
+initial_position = 2
+size = Vector2i(386, 150)
+ok_button_text = "Reset"
+dialog_text = "This will permanently erase ALL saved progress.
+                               Are you sure?"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/EarthButton" to="." method="_on_earth_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/MoonButton" to="." method="_on_moon_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/MarsButton" to="." method="_on_mars_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/DifficultyButton" to="." method="_on_difficulty_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/StoreButton" to="." method="_on_store_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="confirmed" from="ResetConfirmDialog" to="." method="_on_reset_confirm_dialog_confirmed"]

@@ -9,6 +9,8 @@ class_name MainMenu
 @onready var mars_lock_icon: TextureRect = $HBoxContainer/VBoxContainer/MarsButton/LockIcon
 @onready var quit_button: Button = $HBoxContainer/VBoxContainer2/QuitButton
 @onready var store_button: Button = $HBoxContainer/VBoxContainer2/StoreButton
+@onready var reset_button: Button = $HBoxContainer/VBoxContainer2/ResetButton
+@onready var reset_confirm_dialog: ConfirmationDialog = $ResetConfirmDialog
 
 func _ready() -> void:
 	moon_button.disabled = not GameManager.unlocked_maps["moon"]
@@ -17,21 +19,13 @@ func _ready() -> void:
 	mars_lock_icon.visible = mars_button.disabled
 	_update_difficulty_button()
 
-func _is_difficulty_locked() -> bool:
-	return GameManager.earth_current_level > 0 or not GameManager.earth_levels_cleared.is_empty()
-
 func _update_difficulty_button() -> void:
-	var locked: bool = _is_difficulty_locked()
-	difficulty_button.disabled = locked
-	var label: String = "Hard" if GameManager.difficulty == "Hard" else "Easy"
-	difficulty_button.text = "Difficulty: %s%s" % [label, " (locked)" if locked else ""]
+	var label: String = "Hard" if GameManager.difficulty == "hard" else "Easy"
+	difficulty_button.text = "%s" % label
 
 # "signal" — DifficultyButton(Button).pressed -> _on_difficulty_button_pressed()
 func _on_difficulty_button_pressed() -> void:
-	if _is_difficulty_locked():
-		return
-	GameManager.difficulty = "Hard" if GameManager.difficulty == "Easy" else "Easy"
-	GameManager.earth_timer_remaining = GameManager.get_earth_timer_limit()
+	GameManager.difficulty = "hard" if GameManager.difficulty == "easy" else "easy"
 	SaveManager.save_game()
 	_update_difficulty_button()
 
@@ -56,3 +50,12 @@ func _on_quit_button_pressed() -> void:
 # "signal" — StoreButton(Button).pressed -> _on_store_button_pressed()
 func _on_store_button_pressed() -> void:
 	get_tree().change_scene_to_file(GameManager.SHOP_SCENE)
+
+# "signal" — ResetButton(Button).pressed -> _on_reset_button_pressed()
+func _on_reset_button_pressed() -> void:
+	reset_confirm_dialog.popup_centered()
+
+# "signal" — ResetConfirmDialog(ConfirmationDialog).confirmed -> _on_reset_confirm_dialog_confirmed()
+func _on_reset_confirm_dialog_confirmed() -> void:
+	GameManager.reset_all_progress()
+	get_tree().reload_current_scene()

@@ -32,6 +32,7 @@ const BULLET_CATALOG := {
 	"fast": {"name": "Fast Round", "cost": 50, "scene": "res://scenes/entities/bullet_fast.tscn"},
 	"row": {"name": "2 Bullet", "cost": 100, "scene": "res://scenes/entities/bullet_row.tscn"},
 }
+const POTION_COST := 200
 
 # ---------- Persisted state ----------
 var difficulty: String = "easy"    # "easy" or "hard"
@@ -39,13 +40,61 @@ var unlocked_maps: Dictionary = {"earth": true, "moon": false, "mars": false}
 var map_completed: Dictionary = {"earth": false, "moon": false, "mars": false}
 
 var coins: int = 0
+var max_health_bonus: int = 0
 var unlocked_bullets: Array[String] = ["default"]
 var equipped_bullet: String = "default"
-var earth_current_level: int = 0
-var earth_levels_cleared: Array = []
-var earth_timer_remaining: float = EARTH_TIMER_LIMIT_EASY
-var earth_is_rusted: bool = false
-var earth_pre_rust_level: int = 0
+
+var earth_progress: Dictionary = {
+	"easy": make_default_earth_progress("easy"),
+	"hard": make_default_earth_progress("hard"),
+}
+
+func make_default_earth_progress(diff: String) -> Dictionary:
+	return {
+		"current_level": 0,
+		"levels_cleared": [],
+		"timer_remaining": EARTH_TIMER_LIMIT_HARD if diff == "hard" else EARTH_TIMER_LIMIT_EASY,
+		"is_rusted": false,
+		"pre_rust_level": 0,
+		"rust_return_scene": "",
+		"map_completed": false,
+	}
+
+var earth_current_level: int:
+	get:
+		return earth_progress[difficulty]["current_level"]
+	set(value):
+		earth_progress[difficulty]["current_level"] = value
+
+var earth_levels_cleared: Array:
+	get:
+		return earth_progress[difficulty]["levels_cleared"]
+	set(value):
+		earth_progress[difficulty]["levels_cleared"] = value
+
+var earth_timer_remaining: float:
+	get:
+		return earth_progress[difficulty]["timer_remaining"]
+	set(value):
+		earth_progress[difficulty]["timer_remaining"] = value
+
+var earth_is_rusted: bool:
+	get:
+		return earth_progress[difficulty]["is_rusted"]
+	set(value):
+		earth_progress[difficulty]["is_rusted"] = value
+
+var earth_pre_rust_level: int:
+	get:
+		return earth_progress[difficulty]["pre_rust_level"]
+	set(value):
+		earth_progress[difficulty]["pre_rust_level"] = value
+
+var earth_rust_return_scene: String:
+	get:
+		return earth_progress[difficulty]["rust_return_scene"]
+	set(value):
+		earth_progress[difficulty]["rust_return_scene"] = value
 
 # ---------- Runtime-only state (NOT saved) ----------
 var earth_timer_running: bool = false
@@ -85,6 +134,7 @@ func restart_current_scene() -> void:
 	get_tree().reload_current_scene()
 
 func complete_earth_map() -> void:
+	earth_progress[difficulty]["map_completed"] = true
 	map_completed["earth"] = true
 	unlocked_maps["moon"] = true
 	earth_timer_running = false
@@ -95,6 +145,7 @@ func _trigger_earth_rust() -> void:
 	earth_is_rusted = true
 	earth_timer_running = false
 	earth_pre_rust_level = earth_current_level
+	earth_rust_return_scene = get_tree().current_scene.scene_file_path
 	SaveManager.save_game()
 	get_tree().change_scene_to_file(EARTH_BONUS_SCENE)
 
@@ -102,8 +153,25 @@ func clear_earth_rust() -> void:
 	earth_is_rusted = false
 	earth_timer_remaining += EARTH_RUST_BONUS_TIME
 	earth_current_level = earth_pre_rust_level
+	var return_scene: String = earth_rust_return_scene
+	if return_scene == "":
+		return_scene = EARTH_LEVEL_SCENES[earth_current_level]
 	SaveManager.save_game()
-	get_tree().call_deferred("change_scene_to_file", EARTH_LEVEL_SCENES[earth_current_level])
+	get_tree().change_scene_to_file(return_scene)
+
+func reset_all_progress() -> void:
+	difficulty = "easy"
+	unlocked_maps = {"earth": true, "moon": false, "mars": false}
+	map_completed = {"earth": false, "moon": false, "mars": false}
+	earth_progress = {
+		"easy": make_default_earth_progress("easy"),
+		"hard": make_default_earth_progress("hard"),
+	}
+	coins = 0
+	unlocked_bullets = ["default"]
+	equipped_bullet = "default"
+	max_health_bonus = 0
+	SaveManager.save_game()
 
 func add_coins(amount: int) -> void:
 	coins += amount
@@ -125,3 +193,11 @@ func equip_bullet(bullet_id: String) -> void:
 	if unlocked_bullets.has(bullet_id):
 		equipped_bullet = bullet_id
 		SaveManager.save_game()
+
+func buy_potion() -> bool:
+	if coins < POTION_COST:
+		return false
+	coins -= POTION_COST
+	max_health_bonus += 1
+	SaveManager.save_game()
+	return true

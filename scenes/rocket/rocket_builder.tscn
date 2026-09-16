@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cvgby6d6k86jb" path="res://assets/sprites/rocket/rocket_image_01.jpg" id="1_4aft2"]
 [ext_resource type="Script" uid="uid://d1ua645n83ux5" path="res://scripts/rocket/rocket_puzzle.gd" id="1_q1g8t"]
 [ext_resource type="Texture2D" uid="uid://m7c4shmrp5tm" path="res://assets/sprites/rocket/rocket_image_02.png" id="2_q1g8t"]
+[ext_resource type="PackedScene" uid="uid://bo5iaemgtknmu" path="res://scenes/ui/pause_menu.tscn" id="4_rcqne"]
 
 [node name="RocketBuilder" type="Control" unique_id=1966412106]
 layout_mode = 3
@@ -38,6 +39,14 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Assemble the Rocket"
 horizontal_alignment = 1
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1562800477]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 18.0
+offset_right = 66.0
+offset_bottom = 41.0
+text = "Timer"
 
 [node name="PreviewLayer" type="Control" parent="." unique_id=1940826251]
 layout_mode = 1
@@ -144,6 +153,21 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[node name="PauseButton" type="Button" parent="." unique_id=189090584]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -39.0
+offset_top = 19.0
+offset_right = -21.0
+offset_bottom = 50.0
+grow_horizontal = 0
+text = "II"
+
+[node name="PauseMenu" parent="." unique_id=480114824 instance=ExtResource("4_rcqne")]
+
 [connection signal="pressed" from="PreviewLayer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="timeout" from="PreviewTimer" to="." method="_on_preview_timer_timeout"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]

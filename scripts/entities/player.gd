@@ -27,6 +27,7 @@ var normal_fire_rate: float
 @onready var burst_timer: Timer = $BurstTimer
 
 func _ready() -> void:
+	max_health += GameManager.max_health_bonus
 	health = max_health
 	normal_fire_rate = fire_rate
 	add_to_group("player")

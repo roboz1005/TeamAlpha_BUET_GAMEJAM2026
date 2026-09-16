@@ -24,6 +24,9 @@ var piece_atlases: Array[AtlasTexture] = []
 @onready var grid: GridContainer = $PuzzleLayer/PuzzleGrid
 @onready var win_label: Label = $PuzzleLayer/WinLabel
 @onready var win_timer: Timer = $WinTimer
+@onready var timer_label: Label = $TimerLabel
+@onready var pause_button: Button = $PauseButton
+@onready var pause_menu: PauseMenu = $PauseMenu
 
 func _ready() -> void:
 	GameManager.set_earth_timer_active(true)
@@ -37,6 +40,7 @@ func _ready() -> void:
 
 	rocket_image = rocket_images[randi() % rocket_images.size()]
 	preview_image.texture = rocket_image
+	grid_size = 3 if GameManager.difficulty == "easy" else 4
 	grid.columns = grid_size
 	total_tiles = grid_size * grid_size
 	blank_id = total_tiles - 1
@@ -50,6 +54,7 @@ func _exit_tree() -> void:
 	GameManager.set_earth_timer_active(false)
 
 func _process(_delta: float) -> void:
+	_update_timer_label()
 	if preview_layer.visible:
 		preview_countdown_label.text = "Starts in %d s" % int(ceil(preview_timer.time_left))
 
@@ -149,6 +154,12 @@ func _check_solved() -> void:
 	win_label.visible = true
 	win_timer.start()
 
+func _update_timer_label() -> void:
+	var t: float = max(GameManager.earth_timer_remaining, 0.0)
+	var minutes: int = int(t) / 60
+	var seconds: int = int(t) % 60
+	timer_label.text = "%02d:%02d" % [minutes, seconds]
+
 # "signal" — PlayButton(Button).pressed -> _on_play_button_pressed()
 func _on_play_button_pressed() -> void:
 	_start_puzzle()
@@ -168,3 +179,7 @@ func _start_puzzle() -> void:
 # "signal" — WinTimer(Timer).timeout -> _on_win_timer_timeout()
 func _on_win_timer_timeout() -> void:
 	GameManager.complete_earth_map()
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = true
+	pause_menu.visible = true

@@ -22,24 +22,48 @@ color = Color(0, 0, 0, 0.5882353)
 
 [node name="CoinsLabel" type="Label" parent="." unique_id=1128730995]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 45.0
+offset_top = 15.0
+offset_right = 88.0
+offset_bottom = 38.0
+text = "Coins"
 
-[node name="BulletList" type="VBoxContainer" parent="." unique_id=702775808]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=508989163]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 45.0
+offset_top = 45.0
+offset_right = 945.0
+offset_bottom = 445.0
+
+[node name="BulletList" type="VBoxContainer" parent="ScrollContainer" unique_id=702775808]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1907538280]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 460.0
+offset_right = 96.0
+offset_bottom = 495.0
+
+[node name="PotionLabel" type="Label" parent="VBoxContainer" unique_id=174508182]
+layout_mode = 2
+text = "Potion"
+
+[node name="PotionButton" type="Button" parent="VBoxContainer" unique_id=1992178825]
+layout_mode = 2
+text = "Buy"
 
 [node name="BackButton" type="Button" parent="." unique_id=1125648988]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -53.0
-offset_top = 5.0
-offset_right = -8.0
-offset_bottom = 36.0
+offset_left = -60.0
+offset_top = 15.0
+offset_right = -15.0
+offset_bottom = 46.0
 grow_horizontal = 0
 text = "Back"
 
+[connection signal="pressed" from="VBoxContainer/PotionButton" to="." method="_on_potion_button_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

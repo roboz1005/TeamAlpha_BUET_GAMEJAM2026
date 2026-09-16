@@ -116,10 +116,13 @@ func _on_shoot_timer_timeout() -> void:
 	var player: Node = get_tree().get_first_node_in_group("player")
 	if not player:
 		return
-	var dir: Vector2 = player.global_position - global_position
-	if dir.length() < 1.0:
-		dir = Vector2.RIGHT
+	var to_player: Vector2 = player.global_position - global_position
+	var shoot_range: float = get_viewport_rect().size.x / 3.0
+	if to_player.length() > shoot_range:
+		return
+	if to_player.length() < 1.0:
+		to_player = Vector2.RIGHT
 	var proj: EnemyProjectile = enemy_projectile_scene.instantiate()
 	get_tree().current_scene.add_child(proj)
 	proj.global_position = global_position
-	proj.set_direction_vector(dir.normalized())
+	proj.set_direction_vector(to_player.normalized())
