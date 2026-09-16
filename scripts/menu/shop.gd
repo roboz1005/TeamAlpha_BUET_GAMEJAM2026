@@ -60,6 +60,7 @@ func _update_potion_row() -> void:
 
 # "signal" — PotionButton(Button).pressed -> _on_potion_button_pressed()
 func _on_potion_button_pressed() -> void:
+	MusicController.purchase_music_play()
 	GameManager.buy_potion()
 	_refresh()
 
@@ -67,6 +68,7 @@ func _on_bullet_button_pressed(bullet_id: String) -> void:
 	if GameManager.unlocked_bullets.has(bullet_id):
 		GameManager.equip_bullet(bullet_id)
 	else:
+		MusicController.purchase_music_play()
 		GameManager.unlock_bullet(bullet_id)
 	_refresh()
 

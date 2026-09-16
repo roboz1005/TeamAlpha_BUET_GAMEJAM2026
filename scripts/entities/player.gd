@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y += gravity * delta
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
+		MusicController.jump_music_play()
 		velocity.y = jump_velocity
 
 	var direction: float = Input.get_axis("move_left", "move_right")
@@ -101,6 +102,7 @@ func heal(amount: int) -> void:
 func take_damage(amount: int = 1) -> void:
 	if invincible or is_dead:
 		return
+	MusicController.hurt_music_play()
 	health -= amount
 	if health <= 0:
 		die()

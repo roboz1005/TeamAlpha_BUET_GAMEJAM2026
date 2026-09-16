@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://dg3060ygo2xm2"]
+
+[ext_resource type="Script" uid="uid://dep3vyou6qtem" path="res://scripts/autoload/music_controller.gd" id="1_psua7"]
+[ext_resource type="AudioStream" uid="uid://tr7qngiw6o83" path="res://assets/brackeys_platformer_assets/music/Grasslands_Theme.mp3" id="2_5ay60"]
+[ext_resource type="AudioStream" uid="uid://e81n44bhij0y" path="res://assets/brackeys_platformer_assets/sounds/hew-01.wav" id="2_67qkv"]
+[ext_resource type="AudioStream" uid="uid://baxfqdi84iavp" path="res://assets/brackeys_platformer_assets/sounds/jump.mp3" id="4_0irbh"]
+[ext_resource type="AudioStream" uid="uid://rwasp2n762ws" path="res://assets/brackeys_platformer_assets/sounds/click.wav" id="4_5ay60"]
+[ext_resource type="AudioStream" uid="uid://dd57omypxn1uc" path="res://assets/brackeys_platformer_assets/sounds/reject.ogg" id="5_0irbh"]
+
+[node name="MusicController" type="Node2D" unique_id=838727195]
+script = ExtResource("1_psua7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2023481189]
+process_mode = 3
+stream = ExtResource("2_5ay60")
+volume_db = -16.124
+autoplay = true
+
+[node name="Coin" type="AudioStreamPlayer" parent="." unique_id=114280494]
+
+[node name="PowerUP" type="AudioStreamPlayer" parent="." unique_id=2062521602]
+
+[node name="Jump" type="AudioStreamPlayer" parent="." unique_id=593297168]
+stream = ExtResource("4_0irbh")
+volume_db = -5.542
+
+[node name="Slide" type="AudioStreamPlayer" parent="." unique_id=2095062056]
+
+[node name="Click" type="AudioStreamPlayer" parent="." unique_id=1669143006]
+stream = ExtResource("4_5ay60")
+volume_db = -7.341
+pitch_scale = 0.92
+
+[node name="pickup" type="AudioStreamPlayer" parent="." unique_id=1340619727]
+stream = ExtResource("4_5ay60")
+volume_db = -7.341
+pitch_scale = 0.92
+
+[node name="Hurt" type="AudioStreamPlayer" parent="." unique_id=1806411865]
+stream = ExtResource("4_5ay60")
+volume_db = -7.341
+pitch_scale = 0.92
+
+[node name="Reject" type="AudioStreamPlayer" parent="." unique_id=104821087]
+stream = ExtResource("5_0irbh")
+volume_db = -1.223
+pitch_scale = 0.92
+
+[node name="Bullet" type="AudioStreamPlayer" parent="." unique_id=282720281]
+stream = ExtResource("2_67qkv")
+volume_db = -3.643
+pitch_scale = 2.0
+
+[node name="Purchase" type="AudioStreamPlayer" parent="." unique_id=716528912]
+
+[node name="Fall" type="AudioStreamPlayer" parent="." unique_id=1824208223]

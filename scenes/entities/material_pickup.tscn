@@ -18,6 +18,4 @@ texture = ExtResource("2_3f6uy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=694969773]
 shape = SubResource("RectangleShape2D_247la")
 
-[node name="PickupSound" type="AudioStreamPlayer2D" parent="." unique_id=1001024538]
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

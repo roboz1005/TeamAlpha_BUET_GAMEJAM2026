@@ -5,5 +5,6 @@ class_name RustRemover
 func _on_body_entered(body: Node) -> void:
 	if not body.is_in_group("player"):
 		return
+	MusicController.pickup_music_play()
 	GameManager.clear_earth_rust()
 	queue_free()

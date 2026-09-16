@@ -13,6 +13,7 @@ class_name MainMenu
 @onready var reset_confirm_dialog: ConfirmationDialog = $ResetConfirmDialog
 
 func _ready() -> void:
+	MusicController.bgm_play()
 	moon_button.disabled = not GameManager.unlocked_maps["moon"]
 	mars_button.disabled = not GameManager.unlocked_maps["mars"]
 	moon_lock_icon.visible = moon_button.disabled

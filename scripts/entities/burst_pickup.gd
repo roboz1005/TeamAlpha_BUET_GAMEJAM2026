@@ -10,4 +10,5 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if body.has_method("activate_burst_mode"):
 		body.activate_burst_mode(burst_fire_rate, burst_duration)
+		MusicController.pickup_music_play()
 	queue_free()

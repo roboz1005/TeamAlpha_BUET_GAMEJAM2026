@@ -143,8 +143,12 @@ func _on_slot_pressed(slot: int) -> void:
 	if solved or not puzzle_started:
 		return
 	if slot in _get_neighbors(blank_slot):
+		MusicController.slide_music_play()
+		await get_tree().create_timer(0.3).timeout
 		_swap_slots(slot, blank_slot)
 		_check_solved()
+	else:
+		MusicController.reject_music_play()
 
 func _check_solved() -> void:
 	for i in slot_piece_id.size():

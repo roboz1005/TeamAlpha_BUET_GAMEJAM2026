@@ -25,7 +25,8 @@ var is_hurt_animating: bool = false
 var has_split: bool = false
 var is_split_copy: bool = false
 var current_phase: Phase = Phase.NORMAL
-var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity: float = 600 #ProjectSettings.get_setting("physics/2d/default_gravity")
+var sound_played: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
@@ -34,6 +35,7 @@ var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var death_timer: Timer = $DeathTimer
 @onready var attack_timer: Timer = $AttackTimer
 @onready var phase_timer: Timer = $PhaseTimer
+@onready var sound_timer: Timer = $SoundTimer
 
 func _ready() -> void:
 	health = max_health
@@ -51,6 +53,10 @@ func _physics_process(delta: float) -> void:
 	scale = Vector2(5, 5)
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		if position.y > 400 and not sound_played:
+			MusicController.fall_music_play()
+			sound_played = true
+			sound_timer.start()
 	else:
 		velocity.y = 0.0
 
@@ -137,7 +143,8 @@ func _teleport_near_player() -> void:
 	var angle: float = randf() * TAU
 	var dist: float = randf_range(teleport_min_distance, teleport_max_distance)
 	global_position = player.global_position + Vector2.RIGHT.rotated(angle) * dist + Vector2((0.5 - randf()) * 60, -60)
-
+	sound_played = false
+	
 func take_damage(amount: int = 1) -> void:
 	if is_dead:
 		return
@@ -198,6 +205,13 @@ func die() -> void:
 
 	death_timer.start()
 
+func return_surface():
+	var player: Node = get_tree().get_first_node_in_group("player")
+	if not player:
+		return
+	global_position = player.global_position + Vector2(0,-60)
+	sound_played = false
+	
 # "signal" — HurtAnimTimer(Timer).timeout -> _on_hurt_anim_timer_timeout()
 func _on_hurt_anim_timer_timeout() -> void:
 	is_hurt_animating = false
@@ -212,3 +226,7 @@ func _on_damage_area_body_entered(body: Node) -> void:
 		return
 	if body.is_in_group("player") and body.has_method("take_damage"):
 		body.take_damage(1)
+
+
+func _on_sound_timer_timeout() -> void:
+	return_surface()

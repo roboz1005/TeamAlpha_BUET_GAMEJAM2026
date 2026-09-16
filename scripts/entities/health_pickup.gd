@@ -9,4 +9,5 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if body.has_method("heal"):
 		body.heal(heal_amount)
+		MusicController.pickup_music_play()
 	queue_free()

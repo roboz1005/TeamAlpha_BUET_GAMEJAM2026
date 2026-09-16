@@ -25,6 +25,5 @@ func _on_body_entered(body: Node) -> void:
 		level.add_material(material_id, amount)
 
 	collision_shape.set_deferred("disabled", true)
-	if pickup_sound.stream:
-		pickup_sound.play()
+	MusicController.pickup_material_music_play()
 	queue_free()

@@ -7,5 +7,6 @@ class_name Coin
 func _on_body_entered(body: Node) -> void:
 	if not body.is_in_group("player"):
 		return
+	MusicController.coin_music_play()
 	GameManager.add_coins(value)
 	queue_free()
