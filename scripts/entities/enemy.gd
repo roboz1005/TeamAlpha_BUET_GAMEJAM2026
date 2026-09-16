@@ -4,6 +4,14 @@ class_name Enemy
 @export var speed: float = 70.0
 @export var max_health: int = 2
 @export var contact_damage: int = 1
+@export var hard_mode_shoot_interval: float = 2.5
+@export var enemy_projectile_scene: PackedScene = preload("res://scenes/entities/enemy_projectile.tscn")
+@export var coin_scene: PackedScene = preload("res://scenes/entities/coin.tscn")
+@export var health_pickup_scene: PackedScene = preload("res://scenes/entities/health_pickup.tscn")
+@export var burst_pickup_scene: PackedScene = preload("res://scenes/entities/burst_pickup.tscn")
+@export var coin_drop_chance: float = 0.5
+@export var health_drop_chance: float = 0.15
+@export var burst_drop_chance: float = 0.10
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction: int = 1
@@ -19,10 +27,14 @@ var is_hurt_animating: bool = false
 @onready var damage_area: Area2D = $DamageArea
 @onready var hurt_anim_timer: Timer = $HurtAnimTimer
 @onready var death_timer: Timer = $DeathTimer
+@onready var shoot_timer: Timer = $ShootTimer
 
 func _ready() -> void:
 	health = max_health
 	add_to_group("enemy")
+	# Hard mode: regular enemies shoot too, on top of contact damage.
+	if GameManager.difficulty == "hard":
+		shoot_timer.start(hard_mode_shoot_interval)
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
@@ -61,8 +73,26 @@ func die() -> void:
 	is_dead = true
 	animated_sprite.play("death")
 	set_physics_process(false)
+	shoot_timer.stop()
 	damage_area.set_deferred("monitoring", false)
+	_drop_loot()
 	death_timer.start()
+
+func _drop_loot() -> void:
+	if randf() < coin_drop_chance:
+		var coin: Coin = coin_scene.instantiate()
+		get_tree().current_scene.add_child(coin)
+		coin.global_position = global_position
+
+	var roll: float = randf()
+	if roll < health_drop_chance:
+		var drop: HealthPickup = health_pickup_scene.instantiate()
+		get_tree().current_scene.add_child(drop)
+		drop.global_position = global_position
+	elif roll < health_drop_chance + burst_drop_chance:
+		var drop: BurstPickup = burst_pickup_scene.instantiate()
+		get_tree().current_scene.add_child(drop)
+		drop.global_position = global_position
 
 # "signal" — HurtAnimTimer(Timer).timeout -> _on_hurt_anim_timer_timeout()
 func _on_hurt_anim_timer_timeout() -> void:
@@ -78,3 +108,18 @@ func _on_damage_area_body_entered(body: Node) -> void:
 		return
 	if body.is_in_group("player") and body.has_method("take_damage"):
 		body.take_damage(contact_damage)
+
+# "signal" — ShootTimer(Timer).timeout -> _on_shoot_timer_timeout()
+func _on_shoot_timer_timeout() -> void:
+	if is_dead:
+		return
+	var player: Node = get_tree().get_first_node_in_group("player")
+	if not player:
+		return
+	var dir: Vector2 = player.global_position - global_position
+	if dir.length() < 1.0:
+		dir = Vector2.RIGHT
+	var proj: EnemyProjectile = enemy_projectile_scene.instantiate()
+	get_tree().current_scene.add_child(proj)
+	proj.global_position = global_position
+	proj.set_direction_vector(dir.normalized())

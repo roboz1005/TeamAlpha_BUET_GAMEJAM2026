@@ -38,38 +38,61 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 64
 text = "Earth - Select Level"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Background" unique_id=1170675818]
+[node name="HBoxContainer" type="HBoxContainer" parent="Background" unique_id=417981375]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.5
-offset_right = 3.0
-offset_bottom = 50.5
+offset_left = -143.0
+offset_top = -50.0
+offset_right = 18.0
+offset_bottom = 51.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 
-[node name="Level01Button" type="Button" parent="Background/VBoxContainer" unique_id=1367388762]
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/HBoxContainer" unique_id=1170675818]
+layout_mode = 2
+alignment = 1
+
+[node name="Level01Button" type="Button" parent="Background/HBoxContainer/VBoxContainer" unique_id=1367388762]
 layout_mode = 2
 text = "Level 1"
 
-[node name="Level02Button" type="Button" parent="Background/VBoxContainer" unique_id=870919531]
+[node name="Level02Button" type="Button" parent="Background/HBoxContainer/VBoxContainer" unique_id=870919531]
 layout_mode = 2
 text = "Level 2"
 
-[node name="Level03Button" type="Button" parent="Background/VBoxContainer" unique_id=1359999832]
+[node name="Level03Button" type="Button" parent="Background/HBoxContainer/VBoxContainer" unique_id=1359999832]
 layout_mode = 2
 text = "Level 3"
 
-[node name="BackButton" type="Button" parent="Background/VBoxContainer" unique_id=1683389971]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Background/HBoxContainer" unique_id=1508685661]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/VBoxContainer3" unique_id=1300895640]
+layout_mode = 2
+text = "       "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Background/HBoxContainer" unique_id=757943943]
+layout_mode = 2
+alignment = 1
+
+[node name="RocketButton" type="Button" parent="Background/HBoxContainer/VBoxContainer2" unique_id=179139626]
+layout_mode = 2
+text = "Rocket"
+
+[node name="Label" type="Label" parent="Background/HBoxContainer/VBoxContainer2" unique_id=1740056821]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Background/HBoxContainer/VBoxContainer2" unique_id=1039520703]
 layout_mode = 2
 text = "Back"
 
-[connection signal="pressed" from="Background/VBoxContainer/Level01Button" to="." method="_on_level_01_button_pressed"]
-[connection signal="pressed" from="Background/VBoxContainer/Level02Button" to="." method="_on_level_02_button_pressed"]
-[connection signal="pressed" from="Background/VBoxContainer/Level03Button" to="." method="_on_level_03_button_pressed"]
-[connection signal="pressed" from="Background/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer/Level01Button" to="." method="_on_level_01_button_pressed"]
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer/Level02Button" to="." method="_on_level_02_button_pressed"]
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer/Level03Button" to="." method="_on_level_03_button_pressed"]
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer2/RocketButton" to="." method="_on_rocket_button_pressed"]
+[connection signal="pressed" from="Background/HBoxContainer/VBoxContainer2/BackButton" to="." method="_on_back_button_pressed"]

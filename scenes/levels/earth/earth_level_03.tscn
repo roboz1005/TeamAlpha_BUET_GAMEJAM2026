@@ -2,12 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bsgf0c8pulpvl" path="res://scripts/levels/earth_level.gd" id="1_qhcja"]
 [ext_resource type="Texture2D" uid="uid://dgtlny4qxbgck" path="res://assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_t8yf7"]
-[ext_resource type="PackedScene" uid="uid://cry55r1mdqu7r" path="res://scenes/entities/player.tscn" id="3_7bpla"]
-[ext_resource type="PackedScene" uid="uid://dy1ytqed0fmkm" path="res://scenes/entities/enemy.tscn" id="4_of4t6"]
-[ext_resource type="PackedScene" uid="uid://8y2gjwibp2k2" path="res://scenes/entities/material_pickup.tscn" id="5_5w4t2"]
-[ext_resource type="PackedScene" uid="uid://u2nuowf7http" path="res://scenes/entities/level_exit.tscn" id="6_da66o"]
-[ext_resource type="PackedScene" uid="uid://bbtdtrscpgv8v" path="res://scenes/entities/kill_zone.tscn" id="7_1mwmv"]
-[ext_resource type="PackedScene" uid="uid://0lv7pidiah1b" path="res://scenes/ui/hud.tscn" id="8_xkqf4"]
+[ext_resource type="PackedScene" uid="uid://dmujuk5rmbljc" path="res://scenes/levels/earth/earth_level_template.tscn" id="3_n0425"]
+[ext_resource type="Texture2D" uid="uid://dbe001yxdpbh0" path="res://assets/sprites/materials/scap_metal.png" id="6_of4t6"]
+[ext_resource type="Texture2D" uid="uid://bdu2b3vvhgx7t" path="res://assets/sprites/materials/fuel_cell.png" id="7_5w4t2"]
+[ext_resource type="Texture2D" uid="uid://ouc67nn0ydtr" path="res://assets/sprites/materials/electronics.png" id="8_da66o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpjas"]
 texture = ExtResource("2_t8yf7")
@@ -192,47 +190,19 @@ scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD9/wYAAAAAAAAAAAD+/wYAAAAAAAAAAAD//wYAAAAAAAAAAAAAAAYAAAAAAAAAAAABAAYAAAAAAAAAAAACAAYAAAAAAAAAAAADAAYAAAAAAAAAAAAEAAYAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAIAAMAAAAAAAAAAAAJAAMAAAAAAAAAAAAKAAMAAAAAAAAAAAALAAMAAAAAAAAAAAANAAgAAAAAAAAAAAAOAAgAAAAAAAAAAAAPAAkAAAAAAAAAAAAQAAkAAAAAAAAAAAARAAkAAAAAAAAAAAASAAkAAAAAAAAAAAATAAkAAAAAAAAAAAAUAAkAAAAAAAAAAAAVAAkAAAAAAAAAAAAVAAgAAAAAAAAAAAAWAAgAAAAAAAAAAAAXAAgAAAAAAAAAAAAdAAgAAAAAAAAAAAAeAAgAAAAAAAAAAAAfAAgAAAAAAAAAAAAgAAgAAAAAAAAAAAAhAAgAAAAAAAAAAAAiAAgAAAAAAAAAAAAlAAIAAAAAAAAAAAAmAAIAAAAAAAAAAAAnAAIAAAAAAAAAAAAoAAIAAAAAAAAAAAApAAIAAAAAAAAAAAAqAAIAAAAAAAAAAAArAAIAAAAAAAAAAAAsAAIAAAAAAAAAAAAtAAIAAAAAAAAAAAAHAAoAAAAAAAAAAAAIAAoAAAAAAAAAAAAJAAoAAAAAAAAAAAAKAAoAAAAAAAAAAAALAAoAAAAAAAAAAAALAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_ntam3")
 
-[node name="Player" parent="." unique_id=313262677 instance=ExtResource("3_7bpla")]
-scale = Vector2(2, 2)
+[node name="EarthLevelTemplate" parent="." unique_id=1135744634 instance=ExtResource("3_n0425")]
 
-[node name="Camera2D" parent="Player" index="3" unique_id=915271245]
-limit_left = -150
-limit_right = 1600
-limit_bottom = 450
+[node name="ScrapeMetal" parent="EarthLevelTemplate/Materials" parent_id_path=PackedInt32Array(1135744634, 310306671) index="0" unique_id=922264526]
+position = Vector2(270, 72)
+texture_2d = ExtResource("6_of4t6")
 
-[node name="Enemies" type="Node2D" parent="." unique_id=2134188679]
+[node name="FuelCell" parent="EarthLevelTemplate/Materials" parent_id_path=PackedInt32Array(1135744634, 310306671) index="1" unique_id=627157119]
+position = Vector2(313, 72)
+texture_2d = ExtResource("7_5w4t2")
 
-[node name="Enemy" parent="Enemies" unique_id=907278915 instance=ExtResource("4_of4t6")]
-position = Vector2(541, 268)
+[node name="Electronics" parent="EarthLevelTemplate/Materials" parent_id_path=PackedInt32Array(1135744634, 310306671) index="2" unique_id=1124208059]
+position = Vector2(353, 74)
+texture_2d = ExtResource("8_da66o")
 
-[node name="Enemy2" parent="Enemies" unique_id=848686896 instance=ExtResource("4_of4t6")]
-position = Vector2(215, 65)
-
-[node name="Enemy3" parent="Enemies" unique_id=1172256108 instance=ExtResource("4_of4t6")]
-position = Vector2(262, 296)
-
-[node name="Materials" type="Node2D" parent="." unique_id=310306671]
-
-[node name="MaterialPickup" parent="Materials" unique_id=922264526 instance=ExtResource("5_5w4t2")]
-position = Vector2(407, 307)
-scale = Vector2(2, 2)
-material_id = "fuel_cell"
-
-[node name="MaterialPickup2" parent="Materials" unique_id=627157119 instance=ExtResource("5_5w4t2")]
-position = Vector2(652, 269)
-scale = Vector2(2, 2)
-material_id = "electronics"
-
-[node name="MaterialPickup3" parent="Materials" unique_id=1124208059 instance=ExtResource("5_5w4t2")]
-position = Vector2(328, 82)
-scale = Vector2(2, 2)
-
-[node name="LevelExit" parent="." unique_id=103032309 instance=ExtResource("6_da66o")]
-position = Vector2(1108, 201)
-
-[node name="KillZone" parent="." unique_id=1340417661 instance=ExtResource("7_1mwmv")]
-position = Vector2(204, 544)
-
-[node name="HUD" parent="." unique_id=1555539090 instance=ExtResource("8_xkqf4")]
-
-[editable path="Player"]
+[editable path="EarthLevelTemplate"]
+[editable path="EarthLevelTemplate/Player"]

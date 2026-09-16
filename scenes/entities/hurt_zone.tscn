@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c6577ajgab728"]
+
+[ext_resource type="Script" uid="uid://bv06lhjm02i84" path="res://scripts/entities/hurt_zone.gd" id="1_rqswy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntam3"]
+resource_local_to_scene = true
+size = Vector2(200, 20)
+
+[node name="HurtZone" type="Area2D" unique_id=726794326]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_rqswy")
+collision_shape = Vector2(400, 120)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1027361581]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_ntam3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

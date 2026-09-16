@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://bxddxr0dnohg7"]
+
+[ext_resource type="Script" uid="uid://bkomhxp8vng0n" path="res://scripts/ui/death_screen.gd" id="1_j0ehl"]
+
+[node name="DeathScreen" type="CanvasLayer" unique_id=1124804880]
+process_mode = 2
+visible = false
+script = ExtResource("1_j0ehl")
+
+[node name="Control" type="Control" parent="." unique_id=1050448438]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=810178390]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5019608)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=711215351]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.5
+offset_top = -46.5
+offset_right = 55.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DiedLabel" type="Label" parent="Control/VBoxContainer" unique_id=1161860915]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Control/VBoxContainer" unique_id=93531776]
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="Control/VBoxContainer" unique_id=1557237827]
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="Control/VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="Control/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

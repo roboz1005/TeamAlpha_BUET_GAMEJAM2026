@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://7yrhydpmwh53"]
+
+[ext_resource type="Script" uid="uid://dvh1nhbl5r1ck" path="res://scripts/entities/burst_pickup.gd" id="1_tye2h"]
+[ext_resource type="Texture2D" uid="uid://bakfen5eb8bx4" path="res://assets/sprites/skill_firerate.png" id="2_tye2h"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d571p"]
+radius = 16.0
+
+[node name="BurstPickup" type="Area2D" unique_id=119941582]
+scale = Vector2(0.5, 0.5)
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_tye2h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=691057829]
+texture = ExtResource("2_tye2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=566197329]
+shape = SubResource("CircleShape2D_d571p")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

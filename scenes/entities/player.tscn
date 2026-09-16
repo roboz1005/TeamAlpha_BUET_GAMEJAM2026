@@ -3,21 +3,21 @@
 [ext_resource type="Script" uid="uid://t61qirwiscal" path="res://scripts/entities/player.gd" id="1_08t41"]
 [ext_resource type="Texture2D" uid="uid://yse08spkp1tk" path="res://assets/brackeys_platformer_assets/sprites/knight.png" id="1_ucweq"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qc1tv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv3je"]
 atlas = ExtResource("1_ucweq")
-region = Rect2(0, 224, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xe83n"]
-atlas = ExtResource("1_ucweq")
-region = Rect2(32, 224, 32, 32)
+region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cwche"]
 atlas = ExtResource("1_ucweq")
 region = Rect2(64, 224, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yv3je"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xe83n"]
 atlas = ExtResource("1_ucweq")
-region = Rect2(96, 224, 32, 32)
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qc1tv"]
+atlas = ExtResource("1_ucweq")
+region = Rect2(0, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3hm5d"]
 atlas = ExtResource("1_ucweq")
@@ -58,30 +58,6 @@ region = Rect2(0, 160, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ss7kx"]
 atlas = ExtResource("1_ucweq")
 region = Rect2(32, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dnykm"]
-atlas = ExtResource("1_ucweq")
-region = Rect2(64, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c5rqy"]
-atlas = ExtResource("1_ucweq")
-region = Rect2(96, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b6tgf"]
-atlas = ExtResource("1_ucweq")
-region = Rect2(128, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_73kkf"]
-atlas = ExtResource("1_ucweq")
-region = Rect2(160, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n5sgd"]
-atlas = ExtResource("1_ucweq")
-region = Rect2(192, 160, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ki56"]
-atlas = ExtResource("1_ucweq")
-region = Rect2(224, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_saib0"]
 atlas = ExtResource("1_ucweq")
@@ -127,16 +103,16 @@ region = Rect2(32, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qc1tv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xe83n")
+"texture": SubResource("AtlasTexture_yv3je")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cwche")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yv3je")
+"texture": SubResource("AtlasTexture_xe83n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qc1tv")
 }],
 "loop": 0,
 "name": &"death",
@@ -182,24 +158,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ss7kx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dnykm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c5rqy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b6tgf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_73kkf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n5sgd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5ki56")
 }],
 "loop": 0,
 "name": &"jump",
@@ -250,9 +208,11 @@ animations = [{
 size = Vector2(9, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=313262677]
+z_index = 5
 collision_layer = 2
 script = ExtResource("1_08t41")
 jump_velocity = -600.0
+fire_rate = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1167339541]
 sprite_frames = SubResource("SpriteFrames_ntam3")
@@ -270,6 +230,7 @@ position = Vector2(4, 5)
 position_smoothing_enabled = true
 
 [node name="InvincibilityTimer" type="Timer" parent="." unique_id=301723984]
+wait_time = 0.5
 one_shot = true
 
 [node name="ActionAnimTimer" type="Timer" parent="." unique_id=1063318368]
@@ -278,6 +239,14 @@ one_shot = true
 [node name="DeathTimer" type="Timer" parent="." unique_id=608383829]
 one_shot = true
 
+[node name="FireRateTimer" type="Timer" parent="." unique_id=382074869]
+one_shot = true
+
+[node name="BurstTimer" type="Timer" parent="." unique_id=879477429]
+one_shot = true
+
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="timeout" from="ActionAnimTimer" to="." method="_on_action_anim_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
+[connection signal="timeout" from="BurstTimer" to="." method="_on_burst_timer_timeout"]

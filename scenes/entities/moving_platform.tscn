@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dj56pgdd6tf83"]
+
+[ext_resource type="Texture2D" uid="uid://capwhmth7w8lq" path="res://assets/brackeys_platformer_assets/sprites/platforms.png" id="1_14jqb"]
+[ext_resource type="Script" uid="uid://b7ii52vihgbei" path="res://scripts/entities/moving_platform.gd" id="1_jrosv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntam3"]
+atlas = ExtResource("1_14jqb")
+region = Rect2(16, 0, 32, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d571p"]
+size = Vector2(30, 7)
+
+[node name="MovingPlatform" type="AnimatableBody2D" unique_id=1332005006]
+script = ExtResource("1_jrosv")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1075787502]
+texture = SubResource("AtlasTexture_ntam3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2136686539]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_d571p")
+one_way_collision = true
+
+[node name="PauseTimer" type="Timer" parent="." unique_id=1282489368]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="timeout" from="PauseTimer" to="." method="_on_pause_timer_timeout"]

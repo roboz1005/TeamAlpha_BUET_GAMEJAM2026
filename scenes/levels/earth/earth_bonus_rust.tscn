@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://k77uxe8g60ur" path="res://scenes/entities/rust_boss.tscn" id="3_0qtgt"]
 [ext_resource type="PackedScene" uid="uid://bbtdtrscpgv8v" path="res://scenes/entities/kill_zone.tscn" id="4_p3o56"]
 [ext_resource type="PackedScene" uid="uid://bfdy32fdg7217" path="res://scenes/ui/boss_hud.tscn" id="5_qvgtu"]
+[ext_resource type="PackedScene" uid="uid://c2um2iebhbghd" path="res://scenes/ui/boss_intro.tscn" id="7_p3o56"]
+[ext_resource type="PackedScene" uid="uid://bxddxr0dnohg7" path="res://scenes/ui/death_screen.tscn" id="8_qvgtu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qcb4p"]
 texture = ExtResource("1_hew3k")
@@ -188,3 +190,7 @@ position = Vector2(638, 216)
 position = Vector2(530, 553)
 
 [node name="BossHUD" parent="." unique_id=1378429625 instance=ExtResource("5_qvgtu")]
+
+[node name="BossIntro" parent="." unique_id=1124804880 instance=ExtResource("7_p3o56")]
+
+[node name="DeathScreen" parent="." unique_id=541355308 instance=ExtResource("8_qvgtu")]

@@ -1,0 +1,106 @@
+[gd_scene format=3 uid="uid://dcrpdbtxno02g"]
+
+[ext_resource type="Texture2D" uid="uid://js3ggsnpy4uv" path="res://assets/sprites/spaceship.png" id="1_exwa1"]
+
+[sub_resource type="GDScript" id="GDScript_exwa1"]
+script/source = "extends Area2D
+class_name Spaceship
+
+@export var speed: float = 220.0
+@export var vertical_speed_factor: float = 0.5
+var half_width: float = 240.0    # set by launch_rocket.gd at runtime to match the portrait width
+
+var is_alive: bool = true
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func _process(delta: float) -> void:
+	if not is_alive:
+		return
+	var dir: float = Input.get_axis(\"move_left\", \"move_right\")
+	var vertical: float = Input.get_axis(\"move_up\", \"move_down\")
+
+	position.x += dir * speed * delta
+	position.x = clamp(position.x, -half_width, half_width)
+	position.y += vertical * speed * vertical_speed_factor * delta
+
+	if dir < 0.0:
+		animated_sprite.play(\"bank_left\")
+	elif dir > 0.0:
+		animated_sprite.play(\"bank_right\")
+	else:
+		animated_sprite.play(\"fly\")
+
+# \"signal\" — Ship(Area2D).area_entered -> _on_area_entered(area)
+func _on_area_entered(area: Area2D) -> void:
+	if not is_alive:
+		return
+	if area is Debris:
+		_explode()
+
+func _explode() -> void:
+	is_alive = false
+	animated_sprite.play(\"explode\")
+	get_parent().ship_hit()
+
+
+func _on_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyyay"]
+atlas = ExtResource("1_exwa1")
+region = Rect2(150, 0, 150, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyyay")
+}],
+"loop": 1,
+"name": &"bank_lef",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyyay")
+}],
+"loop": 1,
+"name": &"bank_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyyay")
+}],
+"loop": 0,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyyay")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ntam3"]
+radius = 63.03174
+
+[node name="Spaceship" type="Area2D" unique_id=983344653]
+collision_layer = 2
+collision_mask = 0
+script = SubResource("GDScript_exwa1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1201142761]
+sprite_frames = SubResource("SpriteFrames_ntam3")
+animation = &"fly"
+autoplay = "fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=229120422]
+shape = SubResource("CircleShape2D_ntam3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

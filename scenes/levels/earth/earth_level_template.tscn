@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dmujuk5rmbljc"]
+
+[ext_resource type="PackedScene" uid="uid://cry55r1mdqu7r" path="res://scenes/entities/player.tscn" id="3_oeuek"]
+[ext_resource type="Texture2D" uid="uid://dbe001yxdpbh0" path="res://assets/sprites/materials/scap_metal.png" id="4_528j5"]
+[ext_resource type="PackedScene" uid="uid://dy1ytqed0fmkm" path="res://scenes/entities/enemy.tscn" id="4_rlrsb"]
+[ext_resource type="Texture2D" uid="uid://bdu2b3vvhgx7t" path="res://assets/sprites/materials/fuel_cell.png" id="5_envim"]
+[ext_resource type="PackedScene" uid="uid://8y2gjwibp2k2" path="res://scenes/entities/material_pickup.tscn" id="5_u7s4c"]
+[ext_resource type="Texture2D" uid="uid://ouc67nn0ydtr" path="res://assets/sprites/materials/electronics.png" id="6_oeuek"]
+[ext_resource type="PackedScene" uid="uid://bxddxr0dnohg7" path="res://scenes/ui/death_screen.tscn" id="8_s4dmm"]
+[ext_resource type="PackedScene" uid="uid://u2nuowf7http" path="res://scenes/entities/level_exit.tscn" id="9_4tvc2"]
+[ext_resource type="PackedScene" uid="uid://c5mg42bu5o4ek" path="res://scenes/ui/level_complete_screen.tscn" id="9_s4nmp"]
+[ext_resource type="PackedScene" uid="uid://bbtdtrscpgv8v" path="res://scenes/entities/kill_zone.tscn" id="10_sxx6h"]
+[ext_resource type="PackedScene" uid="uid://0lv7pidiah1b" path="res://scenes/ui/hud.tscn" id="11_wulpp"]
+
+[node name="EarthLevelTemplate" type="Node2D" unique_id=1660242054]
+
+[node name="Player" parent="." unique_id=313262677 instance=ExtResource("3_oeuek")]
+scale = Vector2(2, 2)
+
+[node name="Camera2D" parent="Player" index="3" unique_id=915271245]
+limit_left = -150
+limit_right = 1600
+limit_bottom = 450
+
+[node name="Enemies" type="Node2D" parent="." unique_id=2134188679]
+
+[node name="Enemy" parent="Enemies" unique_id=907278915 instance=ExtResource("4_rlrsb")]
+position = Vector2(216, -3)
+
+[node name="Enemy2" parent="Enemies" unique_id=848686896 instance=ExtResource("4_rlrsb")]
+position = Vector2(97, 9)
+
+[node name="Enemy3" parent="Enemies" unique_id=1172256108 instance=ExtResource("4_rlrsb")]
+position = Vector2(153, 5)
+
+[node name="Materials" type="Node2D" parent="." unique_id=310306671]
+
+[node name="ScrapeMetal" parent="Materials" unique_id=922264526 instance=ExtResource("5_u7s4c")]
+position = Vector2(282, 0)
+texture_2d = ExtResource("4_528j5")
+
+[node name="FuelCell" parent="Materials" unique_id=627157119 instance=ExtResource("5_u7s4c")]
+position = Vector2(345, -1)
+material_id = "fuel_cell"
+texture_2d = ExtResource("5_envim")
+
+[node name="Electronics" parent="Materials" unique_id=1124208059 instance=ExtResource("5_u7s4c")]
+position = Vector2(412, -5)
+material_id = "electronics"
+texture_2d = ExtResource("6_oeuek")
+
+[node name="LevelExit" parent="." unique_id=103032309 instance=ExtResource("9_4tvc2")]
+position = Vector2(1108, 201)
+
+[node name="KillZone" parent="." unique_id=1340417661 instance=ExtResource("10_sxx6h")]
+position = Vector2(204, 544)
+
+[node name="HUD" parent="." unique_id=1555539090 instance=ExtResource("11_wulpp")]
+
+[node name="DeathScreen" parent="." unique_id=1124804880 instance=ExtResource("8_s4dmm")]
+
+[node name="LevelCompleteScreen" parent="." unique_id=70873111 instance=ExtResource("9_s4nmp")]
+
+[editable path="Player"]

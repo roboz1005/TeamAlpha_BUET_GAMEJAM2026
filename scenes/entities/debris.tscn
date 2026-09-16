@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://dx4fmw83j6iha"]
+
+[ext_resource type="Texture2D" uid="uid://js3ggsnpy4uv" path="res://assets/sprites/spaceship.png" id="2_d4kw6"]
+
+[sub_resource type="GDScript" id="GDScript_6tbdv"]
+script/source = "extends Area2D
+class_name Debris
+
+@export var speed: float = 140.0
+@export var rotation_speed: float = 1.5
+
+var shape_names: Array[String] = [\"shape_a\", \"shape_b\", \"shape_c\"]
+
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+
+func _ready() -> void:
+	animated_sprite.play(shape_names[randi() % shape_names.size()])
+	rotation = randf() * TAU
+
+func _process(delta: float) -> void:
+	position.y += speed * delta
+	rotation += rotation_speed * delta
+	if position.y > get_viewport_rect().size.y + 200.0:
+		queue_free()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2epop"]
+atlas = ExtResource("2_d4kw6")
+region = Rect2(0, 0, 150, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khs31"]
+atlas = ExtResource("2_d4kw6")
+region = Rect2(300, 0, 150, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2epop")
+}],
+"loop": 1,
+"name": &"shape_a",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khs31")
+}],
+"loop": 1,
+"name": &"shape_b",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2epop")
+}],
+"loop": 1,
+"name": &"shape_c",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d571p"]
+radius = 60.299255
+
+[node name="Debris" type="Area2D" unique_id=1842867954]
+collision_layer = 64
+collision_mask = 2
+script = SubResource("GDScript_6tbdv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=852547356]
+sprite_frames = SubResource("SpriteFrames_ntam3")
+animation = &"shape_c"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2024626476]
+shape = SubResource("CircleShape2D_d571p")

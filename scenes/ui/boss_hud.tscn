@@ -49,6 +49,13 @@ offset_bottom = 31.0
 grow_horizontal = 0
 text = "II"
 
+[node name="HPLabel" type="Label" parent="Control" unique_id=1675528204]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "HP"
+
 [node name="PauseMenu" parent="." unique_id=480114824 instance=ExtResource("2_wdnf6")]
 layer = 10
 

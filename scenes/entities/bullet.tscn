@@ -1,21 +1,67 @@
 [gd_scene format=3 uid="uid://bkndfcropnarn"]
 
 [ext_resource type="Script" uid="uid://bdi2meqsriyjh" path="res://scripts/entities/bullet.gd" id="1_byxw7"]
-[ext_resource type="Texture2D" uid="uid://cfu1cgnq684a2" path="res://assets/brackeys_platformer_assets/sprites/bullet.png" id="1_ma0cl"]
+[ext_resource type="Texture2D" uid="uid://cm5leecbs60wj" path="res://assets/brackeys_platformer_assets/sprites/animated_bullets.png" id="2_byxw7"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n3qe8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r16mb"]
+atlas = ExtResource("2_byxw7")
+region = Rect2(256, 208, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yx2q"]
+atlas = ExtResource("2_byxw7")
+region = Rect2(288, 208, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltso5"]
+atlas = ExtResource("2_byxw7")
+region = Rect2(320, 208, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqdpp"]
+atlas = ExtResource("2_byxw7")
+region = Rect2(352, 208, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4j18"]
+atlas = ExtResource("2_byxw7")
+region = Rect2(384, 208, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r16mb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6yx2q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltso5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqdpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4j18")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_28oi4"]
+radius = 4.001087
+height = 13.999991
 
 [node name="Bullet" type="Area2D" unique_id=670007229]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_byxw7")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1803539977]
-scale = Vector2(2, 2)
-texture = ExtResource("1_ma0cl")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1435426342]
+sprite_frames = SubResource("SpriteFrames_ntam3")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=241423158]
-shape = SubResource("CircleShape2D_n3qe8")
+rotation = 1.5697069
+shape = SubResource("CapsuleShape2D_28oi4")
 
 [node name="LifetimeTimer" type="Timer" parent="." unique_id=983558318]
 one_shot = true

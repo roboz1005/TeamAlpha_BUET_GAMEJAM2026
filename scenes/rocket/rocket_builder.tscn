@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://wtmqa2dfdwiw"]
 
-[ext_resource type="Texture2D" uid="uid://cvgby6d6k86jb" path="res://assets/rocket_image.jpg" id="1_4aft2"]
+[ext_resource type="Texture2D" uid="uid://cvgby6d6k86jb" path="res://assets/sprites/rocket/rocket_image_01.jpg" id="1_4aft2"]
 [ext_resource type="Script" uid="uid://d1ua645n83ux5" path="res://scripts/rocket/rocket_puzzle.gd" id="1_q1g8t"]
+[ext_resource type="Texture2D" uid="uid://m7c4shmrp5tm" path="res://assets/sprites/rocket/rocket_image_02.png" id="2_q1g8t"]
 
 [node name="RocketBuilder" type="Control" unique_id=1966412106]
 layout_mode = 3
@@ -11,8 +12,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q1g8t")
-rocket_image = ExtResource("1_4aft2")
-grid_size = 2
+rocket_images = Array[Texture2D]([ExtResource("1_4aft2"), ExtResource("2_q1g8t")])
+grid_size = 3
+piece_display_size = 100
 
 [node name="Background" type="ColorRect" parent="." unique_id=206003430]
 layout_mode = 1
@@ -28,24 +30,80 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -161.5
+offset_left = -136.0
 offset_top = 12.0
-offset_right = 161.5
+offset_right = 187.0
 offset_bottom = 57.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 32
 text = "Assemble the Rocket"
 horizontal_alignment = 1
 
-[node name="PreviewTextureRect" type="TextureRect" parent="." unique_id=144877110]
+[node name="PreviewLayer" type="Control" parent="." unique_id=1940826251]
 layout_mode = 1
-offset_left = 25.0
-offset_top = 25.0
-offset_right = 124.0
-offset_bottom = 124.0
-expand_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="PuzzleGrid" type="GridContainer" parent="." unique_id=866654990]
+[node name="PreviewImage" type="TextureRect" parent="PreviewLayer" unique_id=144877110]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -222.0
+offset_right = 235.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PreviewCountdownLabel" type="Label" parent="PreviewLayer" unique_id=1099464625]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.0
+offset_top = 214.0
+offset_right = 14.0
+offset_bottom = 237.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CountDown"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayButton" type="Button" parent="PreviewLayer" unique_id=28586058]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 86.0
+offset_top = 214.0
+offset_right = 143.0
+offset_bottom = 245.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "  Play  "
+
+[node name="PuzzleLayer" type="Control" parent="." unique_id=1433219514]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PuzzleGrid" type="GridContainer" parent="PuzzleLayer" unique_id=866654990]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,11 +116,9 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/h_separation = 3
-theme_override_constants/v_separation = 3
-columns = 3
+columns = 4
 
-[node name="WinLabel" type="Label" parent="." unique_id=273625916]
+[node name="WinLabel" type="Label" parent="PuzzleLayer" unique_id=273625916]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -70,10 +126,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -218.0
+offset_top = -33.5
+offset_right = 218.0
+offset_bottom = 33.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48
@@ -81,8 +137,13 @@ text = "Rocket Assembled!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PreviewTimer" type="Timer" parent="." unique_id=1882010371]
+one_shot = true
+
 [node name="WinTimer" type="Timer" parent="." unique_id=949457925]
 wait_time = 2.0
 one_shot = true
 
+[connection signal="pressed" from="PreviewLayer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="timeout" from="PreviewTimer" to="." method="_on_preview_timer_timeout"]
 [connection signal="timeout" from="WinTimer" to="." method="_on_win_timer_timeout"]

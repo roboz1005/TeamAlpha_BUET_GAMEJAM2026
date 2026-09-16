@@ -1,23 +1,21 @@
 extends Node
 
-# ============================================================
-#  SaveManager — reads/writes the JSON save file. Autoloaded as
-#  "SaveManager". Called by GameManager whenever state changes.
-# ============================================================
-
 const SAVE_FILE_NAME := "sojourner_save.json"
 const SAVE_PATH := "user://" + SAVE_FILE_NAME
 
 func save_game() -> void:
 	var data := {
+		"difficulty": GameManager.difficulty,
 		"unlocked_maps": GameManager.unlocked_maps,
 		"map_completed": GameManager.map_completed,
 		"earth_current_level": GameManager.earth_current_level,
 		"earth_levels_cleared": GameManager.earth_levels_cleared,
-		"earth_materials": GameManager.earth_materials,
 		"earth_timer_remaining": GameManager.earth_timer_remaining,
 		"earth_is_rusted": GameManager.earth_is_rusted,
 		"earth_pre_rust_level": GameManager.earth_pre_rust_level,
+		"coins": GameManager.coins,
+		"unlocked_bullets": GameManager.unlocked_bullets,
+		"equipped_bullet": GameManager.equipped_bullet,
 	}
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file:
@@ -39,6 +37,7 @@ func load_game() -> void:
 		return
 	var data: Dictionary = parsed
 
+	GameManager.difficulty = data.get("difficulty", "easy")
 	GameManager.unlocked_maps = data.get("unlocked_maps", GameManager.unlocked_maps)
 	GameManager.map_completed = data.get("map_completed", GameManager.map_completed)
 
@@ -46,20 +45,23 @@ func load_game() -> void:
 	GameManager.earth_current_level = int(data.get("earth_current_level", 0))
 	GameManager.earth_pre_rust_level = int(data.get("earth_pre_rust_level", 0))
 	GameManager.earth_is_rusted = data.get("earth_is_rusted", false)
-	GameManager.earth_timer_remaining = float(data.get("earth_timer_remaining", GameManager.EARTH_TIMER_LIMIT))
-
+	GameManager.earth_timer_remaining = float(data.get("earth_timer_remaining", GameManager.get_earth_timer_limit()))
+	GameManager.coins = int(data.get("coins", 0))
+	GameManager.equipped_bullet = data.get("equipped_bullet", "default")
+	var unlocked_raw: Array = data.get("unlocked_bullets", ["default"])
+	var unlocked: Array[String] = []
+	for v in unlocked_raw:
+		unlocked.append(str(v))
+	GameManager.unlocked_bullets = unlocked
+	
 	var cleared_raw: Array = data.get("earth_levels_cleared", [])
 	var cleared: Array = []
 	for v in cleared_raw:
 		cleared.append(int(v))
 	GameManager.earth_levels_cleared = cleared
 
-	var materials_raw: Dictionary = data.get("earth_materials", {})
-	for key in materials_raw.keys():
-		GameManager.earth_materials[key] = int(materials_raw[key])
-
-# Optional utility — not wired to any UI button. Call from the Debugger's
-# "Execute" panel during testing if you want to wipe progress and start over.
+# Optional — not wired to any UI. Call from the Debugger's "Execute" panel
+# during testing to wipe progress and start over.
 func reset_save() -> void:
 	var dir := DirAccess.open("user://")
 	if dir and dir.file_exists(SAVE_FILE_NAME):

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://bd5dyalko4xx1"]
+
+[ext_resource type="Script" uid="uid://dytexxsgqga5r" path="res://scripts/menu/shop.gd" id="1_360xs"]
+
+[node name="Shop" type="Control" unique_id=943318495]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_360xs")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=138090784]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="CoinsLabel" type="Label" parent="." unique_id=1128730995]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BulletList" type="VBoxContainer" parent="." unique_id=702775808]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BackButton" type="Button" parent="." unique_id=1125648988]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_top = 5.0
+offset_right = -8.0
+offset_bottom = 36.0
+grow_horizontal = 0
+text = "Back"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

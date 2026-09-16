@@ -1,28 +1,34 @@
 extends CharacterBody2D
 class_name Player
 
-@export var speed: float = 140.0
-@export var jump_velocity: float = -320.0
+@export var speed: float = 200.0
+@export var jump_velocity: float = -280.0
 @export var max_health: int = 3
-@export var invincibility_time: float = 1.0
+@export var invincibility_time: float = 0.5
+@export var fire_rate: float = 0.25
 @export var death_reload_delay: float = 0.6
-@export var bullet_scene: PackedScene = preload("res://scenes/entities/bullet.tscn")
+
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var health: int
 var facing_left: bool = false
 var is_dead: bool = false
 var invincible: bool = false
+var can_shoot: bool = true
 var is_action_animating: bool = false
+var normal_fire_rate: float
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
 @onready var invincibility_timer: Timer = $InvincibilityTimer
 @onready var action_anim_timer: Timer = $ActionAnimTimer
+@onready var fire_rate_timer: Timer = $FireRateTimer
 @onready var death_timer: Timer = $DeathTimer
+@onready var burst_timer: Timer = $BurstTimer
 
 func _ready() -> void:
 	health = max_health
+	normal_fire_rate = fire_rate
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
@@ -49,7 +55,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, speed)
 
-	if Input.is_action_just_pressed("shoot"):
+	# Held down, not just-pressed — this is what makes fire auto-repeat while
+	# the button is held. shoot() itself enforces the cooldown below.
+	if Input.is_action_pressed("shoot"):
 		shoot()
 
 	_update_animation(direction)
@@ -70,6 +78,13 @@ func _lock_animation(duration: float) -> void:
 	action_anim_timer.start(duration)
 
 func shoot() -> void:
+	if not can_shoot or is_dead:
+		return
+	can_shoot = false
+	fire_rate_timer.start(fire_rate)
+
+	var info: Dictionary = GameManager.BULLET_CATALOG.get(GameManager.equipped_bullet, GameManager.BULLET_CATALOG["default"])
+	var bullet_scene: PackedScene = load(info["scene"])
 	var bullet: Bullet = bullet_scene.instantiate()
 	get_tree().current_scene.add_child(bullet)
 	var offset_x: float = abs(muzzle.position.x)
@@ -78,6 +93,9 @@ func shoot() -> void:
 	bullet.set_direction(-1.0 if facing_left else 1.0)
 	animated_sprite.play("shoot")
 	_lock_animation(0.2)
+
+func heal(amount: int) -> void:
+	health = min(health + amount, max_health)
 
 func take_damage(amount: int = 1) -> void:
 	if invincible or is_dead:
@@ -100,6 +118,14 @@ func die() -> void:
 	set_physics_process(false)
 	death_timer.start(death_reload_delay)
 
+func activate_burst_mode(burst_rate: float, duration: float) -> void:
+	fire_rate = burst_rate
+	burst_timer.start(duration)
+
+# "signal" — BurstTimer(Timer).timeout -> _on_burst_timer_timeout()
+func _on_burst_timer_timeout() -> void:
+	fire_rate = normal_fire_rate
+
 # "signal" — InvincibilityTimer(Timer).timeout -> _on_invincibility_timer_timeout()
 func _on_invincibility_timer_timeout() -> void:
 	invincible = false
@@ -108,6 +134,14 @@ func _on_invincibility_timer_timeout() -> void:
 func _on_action_anim_timer_timeout() -> void:
 	is_action_animating = false
 
+# "signal" — FireRateTimer(Timer).timeout -> _on_fire_rate_timer_timeout()
+func _on_fire_rate_timer_timeout() -> void:
+	can_shoot = true
+
 # "signal" — DeathTimer(Timer).timeout -> _on_death_timer_timeout()
 func _on_death_timer_timeout() -> void:
-	GameManager.restart_current_earth_level()
+	var level: Node = get_tree().current_scene
+	if level and level.has_method("show_death_screen"):
+		level.show_death_screen()
+	else:
+		GameManager.restart_current_scene()

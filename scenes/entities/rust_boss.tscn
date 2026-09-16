@@ -19,21 +19,9 @@ region = Rect2(24, 0, 24, 24)
 atlas = ExtResource("1_8xnuu")
 region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6xdcy"]
-atlas = ExtResource("1_8xnuu")
-region = Rect2(0, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1vx8a"]
-atlas = ExtResource("1_8xnuu")
-region = Rect2(24, 48, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7acs"]
 atlas = ExtResource("1_8xnuu")
 region = Rect2(48, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_godp8"]
-atlas = ExtResource("1_8xnuu")
-region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hofux"]
 atlas = ExtResource("1_8xnuu")
@@ -72,16 +60,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6xdcy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1vx8a")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_f7acs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_godp8")
 }],
 "loop": 0,
 "name": &"hurt",
@@ -106,45 +85,49 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d571p"]
-size = Vector2(12.799999, 11.499999)
+size = Vector2(1.1999999, 1.1000003)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ntam3"]
-size = Vector2(128, 115)
+size = Vector2(12, 11)
 
 [node name="RustBoss" type="CharacterBody2D" unique_id=1806183726]
+collision_layer = 4
 script = ExtResource("1_ec47x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1080413453]
-scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_ntam3")
-animation = &"death"
+animation = &"move"
 autoplay = "move"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=313191382]
-position = Vector2(-1.4305115e-06, 62.5)
+position = Vector2(5.9604645e-08, 6.5000014)
 scale = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_d571p")
 
 [node name="WallRayRight" type="RayCast2D" parent="." unique_id=251208230]
-position = Vector2(0, 63)
+position = Vector2(0, 7)
 target_position = Vector2(75, 0)
 
 [node name="WallRayLeft" type="RayCast2D" parent="." unique_id=1950299625]
-position = Vector2(0, 63)
+position = Vector2(0, 7)
 target_position = Vector2(-75, 0)
 
 [node name="Muzzle" type="Marker2D" parent="." unique_id=1363743176]
-position = Vector2(0, 63)
+position = Vector2(0, 9)
 
-[node name="ShootTimer" type="Timer" parent="." unique_id=284468366]
+[node name="AttackTimer" type="Timer" parent="." unique_id=284468366]
+wait_time = 0.7
+
+[node name="PhaseTimer" type="Timer" parent="." unique_id=869466026]
+wait_time = 0.7
 one_shot = true
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=662022416]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=355602409]
-position = Vector2(0, 62.5)
+position = Vector2(0, 6.5)
 shape = SubResource("RectangleShape2D_ntam3")
 
 [node name="HurtAnimTimer" type="Timer" parent="." unique_id=431917525]
@@ -153,7 +136,8 @@ one_shot = true
 [node name="DeathTimer" type="Timer" parent="." unique_id=73352222]
 one_shot = true
 
-[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="PhaseTimer" to="." method="_on_phase_timer_timeout"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="timeout" from="HurtAnimTimer" to="." method="_on_hurt_anim_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

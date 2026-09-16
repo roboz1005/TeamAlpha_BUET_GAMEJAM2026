@@ -44,26 +44,30 @@ theme_override_font_sizes/font_size = 64
 text = "Sojourner"
 uppercase = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1758153655]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=135709054]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.0
-offset_top = -50.5
-offset_right = 3.0
-offset_bottom = 50.5
+offset_left = -105.0
+offset_top = -83.0
+offset_right = -5.0
+offset_bottom = 53.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
 
-[node name="EarthButton" type="Button" parent="VBoxContainer" unique_id=1591832980]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1758153655]
+layout_mode = 2
+alignment = 1
+
+[node name="EarthButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1591832980]
 layout_mode = 2
 text = "Earth"
 
-[node name="LockIcon" type="TextureRect" parent="VBoxContainer/EarthButton" unique_id=1905016543]
+[node name="LockIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/EarthButton" unique_id=1905016543]
 visible = false
 modulate = Color(1, 1, 1, 0.47058824)
 layout_mode = 1
@@ -72,11 +76,11 @@ offset_bottom = 16.0
 texture = SubResource("AtlasTexture_d571p")
 stretch_mode = 4
 
-[node name="MoonButton" type="Button" parent="VBoxContainer" unique_id=1758915207]
+[node name="MoonButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1758915207]
 layout_mode = 2
 text = "Moon"
 
-[node name="LockIcon" type="TextureRect" parent="VBoxContainer/MoonButton" unique_id=1283562878]
+[node name="LockIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/MoonButton" unique_id=1283562878]
 modulate = Color(1, 1, 1, 0.47058824)
 layout_mode = 0
 offset_right = 16.0
@@ -84,11 +88,11 @@ offset_bottom = 16.0
 texture = SubResource("AtlasTexture_d571p")
 stretch_mode = 4
 
-[node name="MarsButton" type="Button" parent="VBoxContainer" unique_id=2004450626]
+[node name="MarsButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=2004450626]
 layout_mode = 2
 text = "Mars"
 
-[node name="LockIcon" type="TextureRect" parent="VBoxContainer/MarsButton" unique_id=804586183]
+[node name="LockIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarsButton" unique_id=804586183]
 modulate = Color(1, 1, 1, 0.47058824)
 layout_mode = 1
 offset_right = 16.0
@@ -96,11 +100,32 @@ offset_bottom = 16.0
 texture = SubResource("AtlasTexture_d571p")
 stretch_mode = 4
 
-[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=960375854]
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer" unique_id=1694197470]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3" unique_id=1346659083]
+layout_mode = 2
+text = "    "
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=1812024262]
+layout_mode = 2
+alignment = 1
+
+[node name="DifficultyButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=533862970]
+layout_mode = 2
+text = "Easy"
+
+[node name="StoreButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=1373744163]
+layout_mode = 2
+text = "Store"
+
+[node name="QuitButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=960375854]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/EarthButton" to="." method="_on_earth_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MoonButton" to="." method="_on_moon_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarsButton" to="." method="_on_mars_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/EarthButton" to="." method="_on_earth_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/MoonButton" to="." method="_on_moon_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/MarsButton" to="." method="_on_mars_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/DifficultyButton" to="." method="_on_difficulty_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/StoreButton" to="." method="_on_store_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/QuitButton" to="." method="_on_quit_button_pressed"]

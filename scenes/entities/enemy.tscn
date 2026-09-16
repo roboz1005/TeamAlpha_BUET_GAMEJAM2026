@@ -3,6 +3,12 @@
 [ext_resource type="Script" uid="uid://jixkd75ppnjw" path="res://scripts/entities/enemy.gd" id="1_67neu"]
 [ext_resource type="Texture2D" uid="uid://do2brjfnsdiko" path="res://assets/brackeys_platformer_assets/sprites/slime_green.png" id="1_d7j71"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d571p"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntam3"]
+size = Vector2(13, 13)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_67neu"]
 atlas = ExtResource("1_d7j71")
 region = Rect2(72, 0, 24, 24)
@@ -19,21 +25,9 @@ region = Rect2(24, 0, 24, 24)
 atlas = ExtResource("1_d7j71")
 region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hlb8m"]
-atlas = ExtResource("1_d7j71")
-region = Rect2(0, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4fpkd"]
-atlas = ExtResource("1_d7j71")
-region = Rect2(24, 48, 24, 24)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_wqw0c"]
 atlas = ExtResource("1_d7j71")
 region = Rect2(48, 48, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_onntj"]
-atlas = ExtResource("1_d7j71")
-region = Rect2(72, 48, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7bdk"]
 atlas = ExtResource("1_d7j71")
@@ -72,16 +66,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hlb8m")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4fpkd")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_wqw0c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_onntj")
 }],
 "loop": 0,
 "name": &"hurt",
@@ -105,23 +90,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d571p"]
-size = Vector2(12, 12)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntam3"]
-size = Vector2(12, 12)
-
 [node name="Enemy" type="CharacterBody2D" unique_id=907278915]
+z_index = 1
 scale = Vector2(2, 2)
 collision_layer = 4
 script = ExtResource("1_67neu")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1412442606]
-position = Vector2(0, -6)
-sprite_frames = SubResource("SpriteFrames_ntam3")
-animation = &"walk"
-autoplay = "walk"
-frame_progress = 0.07929907
+coin_drop_chance = 1.0
+health_drop_chance = 0.5
+burst_drop_chance = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1584663447]
 shape = SubResource("RectangleShape2D_d571p")
@@ -141,16 +117,28 @@ position = Vector2(-10, 0)
 target_position = Vector2(0, 20)
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=734192443]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1292803444]
 shape = SubResource("RectangleShape2D_ntam3")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1412442606]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_ntam3")
+animation = &"hurt"
+autoplay = "walk"
+
 [node name="HurtAnimTimer" type="Timer" parent="." unique_id=1549609340]
+wait_time = 0.3
 one_shot = true
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1700880977]
 one_shot = true
 
+[node name="ShootTimer" type="Timer" parent="." unique_id=1115997959]
+
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="timeout" from="HurtAnimTimer" to="." method="_on_hurt_anim_timer_timeout"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

@@ -16,10 +16,17 @@ grow_vertical = 2
 
 [node name="MaterialsLabel" type="Label" parent="Control" unique_id=78150730]
 layout_mode = 1
+offset_top = 60.0
+offset_right = 65.0
+offset_bottom = 83.0
+text = "Material"
+
+[node name="HealthLabel" type="Label" parent="Control" unique_id=494617238]
+layout_mode = 1
 offset_top = 32.0
 offset_right = 65.0
 offset_bottom = 55.0
-text = "Material"
+text = "HP"
 
 [node name="TimerLabel" type="Label" parent="Control" unique_id=669954292]
 layout_mode = 1
@@ -54,3 +61,6 @@ text = "II"
 
 [node name="PauseMenu" parent="." unique_id=480114824 instance=ExtResource("2_bo48s")]
 layer = 10
+
+[connection signal="timeout" from="Control/HintTimer" to="." method="_on_hint_timer_timeout"]
+[connection signal="pressed" from="Control/PauseButton" to="." method="_on_pause_button_pressed"]
