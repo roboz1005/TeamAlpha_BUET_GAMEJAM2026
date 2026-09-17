@@ -10,6 +10,8 @@ var direction: Vector2 = Vector2.RIGHT
 @onready var lifetime_timer: Timer = $LifetimeTimer
 
 func _ready() -> void:
+	if GameManager.difficulty == "hard":
+		speed = 250
 	lifetime_timer.start(lifetime)
 
 func set_direction_vector(dir: Vector2) -> void:

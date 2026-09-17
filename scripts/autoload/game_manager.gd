@@ -11,15 +11,14 @@ const MATERIAL_FUEL := "fuel_cell"
 const MATERIAL_ELECTRONICS := "electronics"
 const MATERIAL_TYPES := [MATERIAL_SCRAP, MATERIAL_FUEL, MATERIAL_ELECTRONICS]
 
-const EARTH_LEVEL_COUNT := 3
-const EARTH_TIMER_LIMIT_EASY := 480.0    # 8 minutes
+const EARTH_LEVEL_COUNT := 2
+const EARTH_TIMER_LIMIT_EASY := 200    # 3 minutes 20s
 const EARTH_TIMER_LIMIT_HARD := 300.0    # 5 minutes
-const EARTH_RUST_BONUS_TIME := 90.0
+const EARTH_RUST_BONUS_TIME := 300.0
 
 const EARTH_LEVEL_SCENES := [
 	"res://scenes/levels/earth/earth_level_01.tscn",
 	"res://scenes/levels/earth/earth_level_02.tscn",
-	"res://scenes/levels/earth/earth_level_03.tscn",
 ]
 const EARTH_BONUS_SCENE := "res://scenes/levels/earth/earth_bonus_rust.tscn"
 const EARTH_ROCKET_BUILDER_SCENE := "res://scenes/rocket/rocket_builder.tscn"
@@ -28,9 +27,13 @@ const EARTH_LEVEL_SELECT_SCENE := "res://scenes/menu/earth_level_select.tscn"
 const SHOP_SCENE := "res://scenes/menu/shop.tscn"
 
 const BULLET_CATALOG := {
-	"default": {"name": "Standard Bolt", "cost": 0, "scene": "res://scenes/entities/bullet.tscn"},
-	"fast": {"name": "Fast Round", "cost": 50, "scene": "res://scenes/entities/bullet_fast.tscn"},
-	"row": {"name": "2 Bullet", "cost": 100, "scene": "res://scenes/entities/bullet_row.tscn"},
+	"default": {"name": "Bolt, dmg: 1, speed: 450", "cost": 0, "scene": "res://scenes/entities/bullet.tscn"},
+	"fast": {"name": "FireBall, dmg: 1, speed: 550", "cost": 50, "scene": "res://scenes/entities/bullet_fast.tscn"},
+	"dmg": {"name": "CannonBall, dmg: 2, speed: 200", "cost": 100, "scene": "res://scenes/entities/bullet_dmg.tscn"},
+	"axe": {"name": "Axe, dmg: 1, speed: 600", "cost": 200, "scene": "res://scenes/entities/bullet_axe.tscn"},
+	"sword": {"name": "Sword, dmg: 1, speed: 600", "cost": 200, "scene": "res://scenes/entities/bullet_sword.tscn"},
+	"double_axe": {"name": "Double Axe, dmg: 2, speed: 300", "cost": 250, "scene": "res://scenes/entities/bullet_double_axe.tscn"},
+	"dagger": {"name": "Dagger, dmg: 1, speed: 700", "cost": 250, "scene": "res://scenes/entities/bullet_dagger.tscn"},
 }
 const POTION_COST := 200
 

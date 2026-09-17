@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bl5ul0dykk5w3"]
+
+[ext_resource type="Texture2D" uid="uid://c2v2o3isxabrt" path="res://assets/splash_screen.png" id="1_fpraa"]
+[ext_resource type="Script" uid="uid://d2e58i42atucr" path="res://scripts/menu/splash_screen.gd" id="1_rr7ju"]
+
+[node name="SplashScreen" type="Control" unique_id=1436391974]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rr7ju")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1511532733]
+modulate = Color(1, 1, 1, 0.76100004)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_fpraa")
+
+[node name="LoadingBar" type="ProgressBar" parent="." unique_id=887936225]
+modulate = Color(0.31327266, 0.5425104, 0.95580214, 1)
+self_modulate = Color(0.21695316, 0.3360546, 0.8227471, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = 193.0
+offset_right = 200.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+show_percentage = false
+indeterminate = true
+editor_preview_indeterminate = false

@@ -13,6 +13,7 @@ var player: Node = null
 @onready var hint_timer: Timer = $Control/HintTimer
 @onready var pause_button: Button = $Control/PauseButton
 @onready var pause_menu: PauseMenu = $PauseMenu
+@onready var coins_label: Label = $Control/CoinsLabel
 
 func _ready() -> void:
 	hint_label.visible = false
@@ -27,6 +28,7 @@ func _process(_delta: float) -> void:
 	_update_materials_label()
 	_update_health_label()
 	_update_timer_label()
+	coins_label.text = "Coins: %d" % GameManager.coins
 
 func _update_materials_label() -> void:
 	var level: Node = get_tree().current_scene

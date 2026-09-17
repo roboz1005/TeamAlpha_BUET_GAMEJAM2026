@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dmujuk5rmbljc"]
 
+[ext_resource type="PackedScene" uid="uid://dj56pgdd6tf83" path="res://scenes/entities/moving_platform.tscn" id="2_528j5"]
 [ext_resource type="PackedScene" uid="uid://cry55r1mdqu7r" path="res://scenes/entities/player.tscn" id="3_oeuek"]
 [ext_resource type="Texture2D" uid="uid://dbe001yxdpbh0" path="res://assets/sprites/materials/scap_metal.png" id="4_528j5"]
+[ext_resource type="PackedScene" uid="uid://b87h6df0t4aic" path="res://scenes/entities/coin.tscn" id="4_oeuek"]
 [ext_resource type="PackedScene" uid="uid://dy1ytqed0fmkm" path="res://scenes/entities/enemy.tscn" id="4_rlrsb"]
 [ext_resource type="Texture2D" uid="uid://bdu2b3vvhgx7t" path="res://assets/sprites/materials/fuel_cell.png" id="5_envim"]
 [ext_resource type="PackedScene" uid="uid://8y2gjwibp2k2" path="res://scenes/entities/material_pickup.tscn" id="5_u7s4c"]
@@ -14,13 +16,8 @@
 
 [node name="EarthLevelTemplate" type="Node2D" unique_id=1660242054]
 
-[node name="Player" parent="." unique_id=313262677 instance=ExtResource("3_oeuek")]
-scale = Vector2(2, 2)
-
-[node name="Camera2D" parent="Player" index="3" unique_id=915271245]
-limit_left = -150
-limit_right = 1600
-limit_bottom = 450
+[node name="LevelExit" parent="." unique_id=103032309 instance=ExtResource("9_4tvc2")]
+position = Vector2(524, 29)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=2134188679]
 
@@ -32,6 +29,19 @@ position = Vector2(97, 9)
 
 [node name="Enemy3" parent="Enemies" unique_id=1172256108 instance=ExtResource("4_rlrsb")]
 position = Vector2(153, 5)
+
+[node name="MovingPlatform" type="Node" parent="." unique_id=460947077]
+
+[node name="MovingPlatform" parent="MovingPlatform" unique_id=1332005006 instance=ExtResource("2_528j5")]
+position = Vector2(205, 98)
+scale = Vector2(2, 2)
+point_b_offset = Vector2(0, 0)
+
+[node name="Coin" type="Node" parent="." unique_id=1045823424]
+
+[node name="Coin" parent="Coin" unique_id=789875082 instance=ExtResource("4_oeuek")]
+position = Vector2(49, 8)
+scale = Vector2(0.8, 0.8)
 
 [node name="Materials" type="Node2D" parent="." unique_id=310306671]
 
@@ -49,8 +59,14 @@ position = Vector2(412, -5)
 material_id = "electronics"
 texture_2d = ExtResource("6_oeuek")
 
-[node name="LevelExit" parent="." unique_id=103032309 instance=ExtResource("9_4tvc2")]
-position = Vector2(1108, 201)
+[node name="Player" parent="." unique_id=313262677 instance=ExtResource("3_oeuek")]
+position = Vector2(528, 8)
+scale = Vector2(2, 2)
+
+[node name="Camera2D" parent="Player" index="3" unique_id=915271245]
+limit_left = -150
+limit_right = 1600
+limit_bottom = 450
 
 [node name="KillZone" parent="." unique_id=1340417661 instance=ExtResource("10_sxx6h")]
 position = Vector2(204, 544)

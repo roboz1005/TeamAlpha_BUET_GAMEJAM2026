@@ -17,40 +17,51 @@ volume_db = -16.124
 autoplay = true
 
 [node name="Coin" type="AudioStreamPlayer" parent="." unique_id=114280494]
+process_mode = 3
 
 [node name="PowerUP" type="AudioStreamPlayer" parent="." unique_id=2062521602]
+process_mode = 3
 
 [node name="Jump" type="AudioStreamPlayer" parent="." unique_id=593297168]
+process_mode = 3
 stream = ExtResource("4_0irbh")
 volume_db = -5.542
 
 [node name="Slide" type="AudioStreamPlayer" parent="." unique_id=2095062056]
+process_mode = 3
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=1669143006]
+process_mode = 3
 stream = ExtResource("4_5ay60")
 volume_db = -7.341
 pitch_scale = 0.92
 
 [node name="pickup" type="AudioStreamPlayer" parent="." unique_id=1340619727]
+process_mode = 3
 stream = ExtResource("4_5ay60")
 volume_db = -7.341
 pitch_scale = 0.92
 
 [node name="Hurt" type="AudioStreamPlayer" parent="." unique_id=1806411865]
+process_mode = 3
 stream = ExtResource("4_5ay60")
 volume_db = -7.341
 pitch_scale = 0.92
 
 [node name="Reject" type="AudioStreamPlayer" parent="." unique_id=104821087]
+process_mode = 3
 stream = ExtResource("5_0irbh")
 volume_db = -1.223
 pitch_scale = 0.92
 
 [node name="Bullet" type="AudioStreamPlayer" parent="." unique_id=282720281]
+process_mode = 3
 stream = ExtResource("2_67qkv")
 volume_db = -3.643
 pitch_scale = 2.0
 
 [node name="Purchase" type="AudioStreamPlayer" parent="." unique_id=716528912]
+process_mode = 3
 
 [node name="Fall" type="AudioStreamPlayer" parent="." unique_id=1824208223]
+process_mode = 3

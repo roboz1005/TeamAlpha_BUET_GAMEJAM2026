@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bd5dyalko4xx1"]
 
 [ext_resource type="Script" uid="uid://dytexxsgqga5r" path="res://scripts/menu/shop.gd" id="1_360xs"]
+[ext_resource type="FontFile" uid="uid://dyu4eetsgq0xw" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="2_r07u6"]
 
 [node name="Shop" type="Control" unique_id=943318495]
 layout_mode = 3
@@ -26,6 +27,7 @@ offset_left = 45.0
 offset_top = 15.0
 offset_right = 88.0
 offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("2_r07u6")
 text = "Coins"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=508989163]
@@ -47,10 +49,12 @@ offset_bottom = 495.0
 
 [node name="PotionLabel" type="Label" parent="VBoxContainer" unique_id=174508182]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r07u6")
 text = "Potion"
 
 [node name="PotionButton" type="Button" parent="VBoxContainer" unique_id=1992178825]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_r07u6")
 text = "Buy"
 
 [node name="BackButton" type="Button" parent="." unique_id=1125648988]
@@ -63,6 +67,7 @@ offset_top = 15.0
 offset_right = -15.0
 offset_bottom = 46.0
 grow_horizontal = 0
+theme_override_fonts/font = ExtResource("2_r07u6")
 text = "Back"
 
 [connection signal="pressed" from="VBoxContainer/PotionButton" to="." method="_on_potion_button_pressed"]

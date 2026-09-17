@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b7y71xbph1ew7"]
+
+[ext_resource type="Script" uid="uid://bdi2meqsriyjh" path="res://scripts/entities/bullet.gd" id="1_2uatv"]
+[ext_resource type="Texture2D" uid="uid://quuokxvj6yd5" path="res://assets/sprites/weapons.png" id="2_2uatv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd7a8"]
+atlas = ExtResource("2_2uatv")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpmq7"]
+atlas = ExtResource("2_2uatv")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dobm"]
+atlas = ExtResource("2_2uatv")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll3hf"]
+atlas = ExtResource("2_2uatv")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd7a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpmq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dobm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll3hf")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_28oi4"]
+radius = 8.999994
+height = 20.002167
+
+[node name="BulletDoubleAxe" type="Area2D" unique_id=670007229]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_2uatv")
+speed = 300.0
+damage = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1435426342]
+sprite_frames = SubResource("SpriteFrames_ntam3")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=241423158]
+position = Vector2(13, 0)
+rotation = 1.5697069
+shape = SubResource("CapsuleShape2D_28oi4")
+
+[node name="LifetimeTimer" type="Timer" parent="." unique_id=983558318]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

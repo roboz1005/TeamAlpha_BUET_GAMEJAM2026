@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://cmdffb68omd0s"]
 
-[ext_resource type="Texture2D" uid="uid://cykl8un56lwnf" path="res://assets/brackeys_platformer_assets/sprites/fruit.png" id="1_3rkf3"]
 [ext_resource type="Script" uid="uid://csbap48j85p5s" path="res://scripts/menu/main_menu.gd" id="1_247la"]
 [ext_resource type="Texture2D" uid="uid://cyxqxdklvyltr" path="res://assets/brackeys_platformer_assets/sprites/icons.png" id="2_247la"]
+[ext_resource type="Texture2D" uid="uid://b22jbuggaa6ls" path="res://assets/menu_bg.png" id="2_kiqgm"]
+[ext_resource type="FontFile" uid="uid://ce1kq7o1cpylc" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="3_hj162"]
+[ext_resource type="FontFile" uid="uid://dyu4eetsgq0xw" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_hj162"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d571p"]
 atlas = ExtResource("2_247la")
@@ -24,7 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_3rkf3")
+texture = ExtResource("2_kiqgm")
 stretch_mode = 6
 
 [node name="TitleLabel" type="Label" parent="." unique_id=459535881]
@@ -34,12 +36,19 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -185.0
-offset_top = -196.0
-offset_right = 185.0
-offset_bottom = -108.0
+offset_left = -287.0
+offset_top = -275.0
+offset_right = 289.0
+offset_bottom = -187.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0.73403823, 1)
+theme_override_colors/font_shadow_color = Color(0.9767199, 0.038368054, 0.2068978, 1)
+theme_override_colors/font_outline_color = Color(0.7137255, 0.47058824, 0.2627451, 0.99607843)
+theme_override_constants/line_spacing = 3
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_hj162")
 theme_override_font_sizes/font_size = 64
 text = "Sojourner"
 uppercase = true
@@ -51,10 +60,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -105.0
-offset_top = -83.0
-offset_right = -5.0
-offset_bottom = 53.0
+offset_left = -175.0
+offset_top = -100.0
+offset_right = 2.0
+offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
@@ -65,6 +74,7 @@ alignment = 1
 
 [node name="EarthButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1591832980]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hj162")
 text = "Earth"
 
 [node name="LockIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/EarthButton" unique_id=1905016543]
@@ -78,6 +88,7 @@ stretch_mode = 4
 
 [node name="MoonButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=1758915207]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hj162")
 text = "Moon"
 
 [node name="LockIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/MoonButton" unique_id=1283562878]
@@ -90,6 +101,7 @@ stretch_mode = 4
 
 [node name="MarsButton" type="Button" parent="HBoxContainer/VBoxContainer" unique_id=2004450626]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hj162")
 text = "Mars"
 
 [node name="LockIcon" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarsButton" unique_id=804586183]
@@ -113,18 +125,22 @@ alignment = 1
 
 [node name="DifficultyButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=533862970]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hj162")
 text = "Easy"
 
 [node name="StoreButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=1373744163]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hj162")
 text = "Store"
 
 [node name="ResetButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=1324368877]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hj162")
 text = "Reset"
 
 [node name="QuitButton" type="Button" parent="HBoxContainer/VBoxContainer2" unique_id=960375854]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_hj162")
 text = "Quit"
 
 [node name="ResetConfirmDialog" type="ConfirmationDialog" parent="." unique_id=471241033]

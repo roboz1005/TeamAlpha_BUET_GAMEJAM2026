@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bwwhbv56x57yn"]
+
+[ext_resource type="Script" uid="uid://t7eak8640qsd" path="res://scripts/ui/parallex_background.gd" id="1_ce6sx"]
+
+[node name="ParallexBackground" type="Node2D" unique_id=2022288973]
+script = ExtResource("1_ce6sx")

@@ -3,57 +3,58 @@
 [ext_resource type="Script" uid="uid://bdi2meqsriyjh" path="res://scripts/entities/bullet.gd" id="1_lr1hu"]
 [ext_resource type="Texture2D" uid="uid://cm5leecbs60wj" path="res://assets/brackeys_platformer_assets/sprites/animated_bullets.png" id="2_cg1bw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r16mb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr1hu"]
 atlas = ExtResource("2_cg1bw")
-region = Rect2(256, 208, 32, 16)
+region = Rect2(448, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6yx2q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cg1bw"]
 atlas = ExtResource("2_cg1bw")
-region = Rect2(288, 208, 32, 16)
+region = Rect2(480, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ltso5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlqqp"]
 atlas = ExtResource("2_cg1bw")
-region = Rect2(320, 208, 32, 16)
+region = Rect2(512, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fqdpp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_assqq"]
 atlas = ExtResource("2_cg1bw")
-region = Rect2(352, 208, 32, 16)
+region = Rect2(544, 192, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l4j18"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_crn5i"]
 atlas = ExtResource("2_cg1bw")
-region = Rect2(384, 208, 32, 16)
+region = Rect2(576, 192, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r16mb")
+"texture": SubResource("AtlasTexture_lr1hu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6yx2q")
+"texture": SubResource("AtlasTexture_cg1bw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ltso5")
+"texture": SubResource("AtlasTexture_vlqqp")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fqdpp")
+"texture": SubResource("AtlasTexture_assqq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l4j18")
+"texture": SubResource("AtlasTexture_crn5i")
 }],
 "loop": 0,
 "name": &"default",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_28oi4"]
-radius = 4.001087
-height = 13.999991
+radius = 3.9999976
+height = 17.999989
 
-[node name="Bullet" type="Area2D" unique_id=670007229]
+[node name="BulletFast" type="Area2D" unique_id=670007229]
 collision_layer = 8
 collision_mask = 5
 script = ExtResource("1_lr1hu")
+speed = 550.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1435426342]
 sprite_frames = SubResource("SpriteFrames_ntam3")

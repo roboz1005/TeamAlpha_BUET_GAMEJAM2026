@@ -1,17 +1,14 @@
 [gd_scene format=3 uid="uid://u2nuowf7http"]
 
 [ext_resource type="Script" uid="uid://cvoef487u7x3m" path="res://scripts/entities/level_exit.gd" id="1_b0nht"]
-[ext_resource type="Texture2D" uid="uid://dgtlny4qxbgck" path="res://assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_4m0j3"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_had62"]
-atlas = ExtResource("2_4m0j3")
-region = Rect2(16, 144, 16, 112)
+[ext_resource type="Texture2D" uid="uid://bte7ptfcxrks0" path="res://assets/exit.png" id="2_b0nht"]
+[ext_resource type="FontFile" uid="uid://dyu4eetsgq0xw" path="res://assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_4m0j3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ntam3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_had62")
+"texture": ExtResource("2_b0nht")
 }],
 "loop": 1,
 "name": &"default",
@@ -19,7 +16,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d571p"]
-size = Vector2(16, 112)
+size = Vector2(76, 1146)
 
 [node name="LevelExit" type="Area2D" unique_id=103032309]
 collision_layer = 0
@@ -27,9 +24,26 @@ collision_mask = 2
 script = ExtResource("1_b0nht")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=635057510]
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_ntam3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=373213221]
+position = Vector2(143, -53)
 shape = SubResource("RectangleShape2D_d571p")
+
+[node name="ExitLabel" type="Label" parent="." unique_id=226889799]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -137.0
+offset_right = 26.5
+offset_bottom = -114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4m0j3")
+text = "EXIT-->"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

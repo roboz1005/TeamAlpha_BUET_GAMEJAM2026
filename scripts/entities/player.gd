@@ -7,6 +7,7 @@ class_name Player
 @export var invincibility_time: float = 0.5
 @export var fire_rate: float = 0.25
 @export var death_reload_delay: float = 0.6
+@export var fall_dist: int = 400
 
 
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -26,6 +27,8 @@ var normal_fire_rate: float
 @onready var death_timer: Timer = $DeathTimer
 @onready var burst_timer: Timer = $BurstTimer
 
+var fall_played: bool = false
+
 func _ready() -> void:
 	max_health += GameManager.max_health_bonus
 	health = max_health
@@ -38,7 +41,10 @@ func _physics_process(delta: float) -> void:
 
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
+		if global_position.y > fall_dist and not fall_played:
+			MusicController.fall_music_play()
+			fall_played = true
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		MusicController.jump_music_play()
 		velocity.y = jump_velocity

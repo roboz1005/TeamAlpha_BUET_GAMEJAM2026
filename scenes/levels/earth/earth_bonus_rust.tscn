@@ -9,6 +9,141 @@
 [ext_resource type="PackedScene" uid="uid://c2um2iebhbghd" path="res://scenes/ui/boss_intro.tscn" id="7_p3o56"]
 [ext_resource type="PackedScene" uid="uid://bxddxr0dnohg7" path="res://scenes/ui/death_screen.tscn" id="8_qvgtu"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qvgtu"]
+texture = ExtResource("1_hew3k")
+margins = Vector2i(0, 32)
+texture_region_size = Vector2i(16, 112)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+3:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+6:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_28oi4"]
+sources/0 = SubResource("TileSetAtlasSource_qvgtu")
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qcb4p"]
 texture = ExtResource("1_hew3k")
 0:0/0 = 0
@@ -171,26 +306,182 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_qcb4p")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p3o56"]
+texture = ExtResource("1_hew3k")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+6:4/0 = 0
+7:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+6:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+8:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+3:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+2:8/0 = 0
+3:8/0 = 0
+4:8/0 = 0
+5:8/0 = 0
+6:8/0 = 0
+7:8/0 = 0
+8:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+4:9/0 = 0
+5:9/0 = 0
+6:9/0 = 0
+7:9/0 = 0
+0:10/0 = 0
+1:10/0 = 0
+2:10/0 = 0
+3:10/0 = 0
+4:10/0 = 0
+6:10/0 = 0
+0:11/0 = 0
+1:11/0 = 0
+2:11/0 = 0
+3:11/0 = 0
+4:11/0 = 0
+5:11/0 = 0
+0:12/0 = 0
+1:12/0 = 0
+2:12/0 = 0
+3:12/0 = 0
+4:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+5:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+0:15/0 = 0
+1:15/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_d571p"]
+sources/0 = SubResource("TileSetAtlasSource_p3o56")
+
 [node name="EarthBonusRust" type="Node2D" unique_id=566325476]
 script = ExtResource("1_s08on")
 
+[node name="TileMapLayer2" type="TileMapLayer" parent="." unique_id=1983286383]
+modulate = Color(1, 1, 1, 0.425)
+scale = Vector2(10, 10)
+tile_map_data = PackedByteArray("AAAAAPz/AAAAAAEAAAABAPz/AAAAAAEAAAACAPz/AAABAAEAAAADAPz/AAABAAEAAAAEAPz/AAACAAEAAAAFAPz/AAACAAEAAAAGAPz/AAADAAEAAAAHAPz/AAADAAEAAAA=")
+tile_set = SubResource("TileSet_28oi4")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=642639203]
+position = Vector2(-2, -502)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAAAAsAAAAAAAAAAAABAAsAAAAAAAAAAAACAAsAAAAAAAAAAAADAAsAAAAAAAAAAAAEAAsAAAAAAAAAAAAFAAsAAAAAAAAAAAAGAAsAAAAAAAAAAAAHAAsAAAAAAAAAAAAIAAsAAAAAAAAAAAAOAAsAAAAAAAAAAAAPAAsAAAAAAAAAAAAQAAsAAAAAAAAAAAARAAsAAAAAAAAAAAASAAsAAAAAAAAAAAATAAsAAAAAAAAAAAAUAAsAAAAAAAAAAAAVAAsAAAAAAAAAAAAWAAsAAAAAAAAAAAAXAAsAAAAAAAAAAAAYAAsAAAAAAAAAAAAZAAsAAAAAAAAAAAAaAAsAAAAAAAAAAAAbAAsAAAAAAAAAAAAcAAsAAAAAAAAAAAAdAAsAAAAAAAAAAAAeAAsAAAAAAAAAAAAfAAsAAAAAAAAAAAAgAAsAAAAAAAAAAAAhAAsAAAAAAAAAAAAiAAsAAAAAAAAAAAAjAAsAAAAAAAAAAAAkAAsAAAAAAAAAAAAlAAsAAAAAAAAAAAAmAAsAAAAAAAAAAAAnAAsAAAAAAAAAAAAnAAoAAAAAAAAAAAAnAAkAAAAAAAAAAAAnAAgAAAAAAAAAAAAnAAcAAAAAAAAAAAAnAAYAAAAAAAAAAAAnAAUAAAAAAAAAAAAnAAQAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAnAAMAAAAAAAAAAAAnAAIAAAAAAAAAAAAnAAEAAAAAAAAAAAAnAAAAAAAAAAAAAAAnAP//AAAAAAAAAAAjAAgAAAAAAAAAAAAiAAgAAAAAAAAAAAAhAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAJAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAAPAAIAAAAAAAAAAAAQAAIAAAAAAAAAAAAYAAIAAAAAAAAAAAAZAAIAAAAAAAAAAAAaAAIAAAAAAAAAAAAUAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAdAAUAAAAAAAAAAAAeAAUAAAAAAAAAAAAfAAUAAAAAAAAAAAAOAAIAAAAAAAAAAAALAAUAAAAAAAAAAAAGAAgAAAAAAAAAAAANAAsAAAAAAAAAAAAMAAsAAAAAAAAAAAALAAsAAAAAAAAAAAAKAAsAAAAAAAAAAAAJAAsAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAsAAAAEAAAAAAABAAsAAAAEAAAAAAACAAsAAAAEAAAAAAADAAsAAAAEAAAAAAAEAAsAAAAEAAAAAAAFAAsAAAAEAAAAAAAGAAsAAAAEAAAAAAAOAAsAAAAEAAAAAAAPAAsAAAAEAAAAAAAQAAsAAAAEAAAAAAARAAsAAAAEAAAAAAAVAAsAAAAEAAAAAAAWAAsAAAAEAAAAAAAXAAsAAAAEAAAAAAAYAAsAAAAEAAAAAAAZAAsAAAAEAAAAAAAaAAsAAAAEAAAAAAAbAAsAAAAEAAAAAAAcAAsAAAAEAAAAAAAdAAsAAAAEAAAAAAAeAAsAAAAEAAAAAAAfAAsAAAAEAAAAAAAgAAsAAAAEAAAAAAAhAAsAAAAEAAAAAAAiAAsAAAAEAAAAAAAjAAsAAAAEAAAAAAAkAAsAAAAEAAAAAAAlAAsAAAAEAAAAAAAmAAsAAAAEAAAAAAAnAAsAAAAEAAAAAAAnAAoAAAAEAAAAAAAnAAkAAAAAAAAAAAAnAAgAAAAAAAAAAAAnAAcAAAAAAAAAAAAnAAYAAAAEAAAAAAAnAAUAAAACAAAAAAAnAAQAAAACAAAAAAAAAAoAAAAGAAAAAAAAAAkAAAACAAAAAAAAAAgAAAAGAAAAAAAAAAcAAAAAAAAAAAAAAAYAAAACAAAAAAAAAAUAAAAGAAAAAAAAAAQAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAAAAnAAMAAAAAAAAAAAAnAAIAAAAAAAAAAAAnAAEAAAAAAAAAAAAnAAAAAAAAAAAAAAAnAP//AAAEAAAAAAAjAAgAAAAAAAAAAAAiAAgAAAAAAAAAAAAhAAgAAAAAAAAAAAAEAAgAAAAAAAAAAAAFAAgAAAAAAAAAAAAJAAUAAAAAAAAAAAAKAAUAAAAAAAAAAAAPAAIAAAAAAAAAAAAQAAIAAAAAAAAAAAAYAAIAAAAAAAAAAAAZAAIAAAAAAAAAAAAaAAIAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAP//AAAEAAAAAAAdAAUAAAAAAAAAAAAeAAUAAAAAAAAAAAAfAAUAAAAAAAAAAAAOAAIAAAAAAAAAAAALAAUAAAAAAAAAAAAGAAgAAAAAAAAAAAANAAsAAAAEAAAAAAAMAAsAAAAEAAAAAAALAAsAAAAEAAAAAAAKAAsAAAAEAAAAAAAHAAsAAAAEAAAAAAAIAAsAAAAEAAAAAAAJAAsAAAAEAAAAAAATAAsAAAAEAAAAAAASAAsAAAAEAAAAAAAUAAsAAAAEAAAAAAA=")
 tile_set = SubResource("TileSet_ntam3")
 
+[node name="TileMapLayer" type="TileMapLayer" parent="TileMapLayer" unique_id=1655230]
+tile_map_data = PackedByteArray("AAAUAAIAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_d571p")
+
 [node name="Player" parent="." unique_id=313262677 instance=ExtResource("2_s08on")]
-position = Vector2(145, 155)
+position = Vector2(166, -355)
 scale = Vector2(2, 2)
+jump_velocity = -500.0
+death_reload_delay = 0.1
+fall_dist = 1000
+
+[node name="Camera2D" parent="Player" index="3" unique_id=915271245]
+limit_left = 0
+limit_right = 1280
+limit_bottom = 0
 
 [node name="RustBoss" parent="." unique_id=1806183726 instance=ExtResource("3_0qtgt")]
-position = Vector2(638, 216)
+position = Vector2(638, -285)
+scale = Vector2(2, 2)
+fall_distance = -100
 
 [node name="KillZone" parent="." unique_id=1340417661 instance=ExtResource("4_p3o56")]
-position = Vector2(530, 553)
+position = Vector2(530, 169)
 
 [node name="BossHUD" parent="." unique_id=1378429625 instance=ExtResource("5_qvgtu")]
 
 [node name="BossIntro" parent="." unique_id=1124804880 instance=ExtResource("7_p3o56")]
 
 [node name="DeathScreen" parent="." unique_id=541355308 instance=ExtResource("8_qvgtu")]
+
+[editable path="Player"]

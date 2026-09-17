@@ -211,7 +211,7 @@ size = Vector2(9, 15)
 z_index = 5
 collision_layer = 2
 script = ExtResource("1_08t41")
-jump_velocity = -600.0
+jump_velocity = -400.0
 fire_rate = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1167339541]

@@ -14,6 +14,7 @@ class_name RustBoss
 @export var projectile_scene: PackedScene = preload("res://scenes/entities/enemy_projectile.tscn")
 @export var rust_remover_scene: PackedScene = preload("res://scenes/entities/rust_remover.tscn")
 @export var split_boss_scene: PackedScene = preload("res://scenes/entities/rust_boss_small.tscn")
+@export var fall_distance: int = 0
 
 enum Phase { NORMAL, BURST, AREA, TELEPORT }
 const SPECIAL_PHASES: Array[int] = [Phase.BURST, Phase.AREA, Phase.TELEPORT]
@@ -38,6 +39,11 @@ var sound_played: bool = false
 @onready var sound_timer: Timer = $SoundTimer
 
 func _ready() -> void:
+	if GameManager.difficulty == "hard":
+		chase_speed = 60
+		max_health = 60
+		normal_shot_interval = 0.8
+		burst_duration = 1.8
 	health = max_health
 	add_to_group("enemy")
 	add_to_group("boss")
@@ -53,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	scale = Vector2(5, 5)
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		if position.y > 400 and not sound_played:
+		if global_position.y > fall_distance and not sound_played:
 			MusicController.fall_music_play()
 			sound_played = true
 			sound_timer.start()

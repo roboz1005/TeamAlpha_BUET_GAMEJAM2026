@@ -30,6 +30,8 @@ var is_hurt_animating: bool = false
 @onready var shoot_timer: Timer = $ShootTimer
 
 func _ready() -> void:
+	if GameManager.difficulty == "hard":
+		max_health = 4
 	health = max_health
 	add_to_group("enemy")
 	# Hard mode: regular enemies shoot too, on top of contact damage.

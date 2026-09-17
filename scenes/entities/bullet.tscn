@@ -43,7 +43,7 @@ animations = [{
 }],
 "loop": 0,
 "name": &"default",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_28oi4"]

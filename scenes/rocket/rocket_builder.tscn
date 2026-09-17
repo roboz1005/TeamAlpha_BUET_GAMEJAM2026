@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://wtmqa2dfdwiw"]
 
-[ext_resource type="Texture2D" uid="uid://cvgby6d6k86jb" path="res://assets/sprites/rocket/rocket_image_01.jpg" id="1_4aft2"]
 [ext_resource type="Script" uid="uid://d1ua645n83ux5" path="res://scripts/rocket/rocket_puzzle.gd" id="1_q1g8t"]
 [ext_resource type="Texture2D" uid="uid://m7c4shmrp5tm" path="res://assets/sprites/rocket/rocket_image_02.png" id="2_q1g8t"]
+[ext_resource type="Texture2D" uid="uid://bc88vemem8qsx" path="res://assets/sprites/rocket/rocket_image_03.png" id="3_rx7fv"]
+[ext_resource type="Texture2D" uid="uid://ch8wg5r5crb28" path="res://assets/sprites/rocket/rocket_image_01.png" id="4_3owrq"]
 [ext_resource type="PackedScene" uid="uid://bo5iaemgtknmu" path="res://scenes/ui/pause_menu.tscn" id="4_rcqne"]
 
 [node name="RocketBuilder" type="Control" unique_id=1966412106]
@@ -13,7 +14,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_q1g8t")
-rocket_images = Array[Texture2D]([ExtResource("1_4aft2"), ExtResource("2_q1g8t")])
+rocket_images = Array[Texture2D]([ExtResource("2_q1g8t"), ExtResource("3_rx7fv"), ExtResource("4_3owrq")])
 grid_size = 3
 piece_display_size = 100
 

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dsk8prodqqaup"]
+
+[ext_resource type="Script" uid="uid://68l3dai3a20d" path="res://scripts/menu/animated_icon.gd" id="1_34hct"]
+
+[node name="AnimatedIcon" type="TextureRect" unique_id=97003416]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_34hct")

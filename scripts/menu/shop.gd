@@ -22,13 +22,13 @@ func _add_bullet_row(bullet_id: String) -> void:
 	var info: Dictionary = GameManager.BULLET_CATALOG[bullet_id]
 	var row := HBoxContainer.new()
 
-	var icon := TextureRect.new()
-	icon.custom_minimum_size = Vector2(48, 48)
+	var icon := AnimatedIcon.new()
+	icon.custom_minimum_size = Vector2(64, 48)
 	var bullet_scene: PackedScene = load(info["scene"])
 	var preview: Node = bullet_scene.instantiate()
 	if preview.has_node("AnimatedSprite2D"):
 		var sprite: AnimatedSprite2D = preview.get_node("AnimatedSprite2D")
-		icon.texture = sprite.sprite_frames.get_frame_texture(sprite.animation, 0)
+		icon.setup(sprite.sprite_frames, sprite.animation)
 	elif preview.has_node("Sprite2D"):
 		icon.texture = preview.get_node("Sprite2D").texture
 	preview.queue_free()

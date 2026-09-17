@@ -34,6 +34,13 @@ offset_right = 45.0
 offset_bottom = 23.0
 text = "Timer"
 
+[node name="CoinsLabel" type="Label" parent="Control" unique_id=789120167]
+layout_mode = 1
+offset_left = 104.0
+offset_right = 149.0
+offset_bottom = 23.0
+text = "Coins"
+
 [node name="HintLabel" type="Label" parent="Control" unique_id=1696305632]
 visible = false
 layout_mode = 1
